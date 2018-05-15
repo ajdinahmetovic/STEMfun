@@ -6,21 +6,5 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/studentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Student"
-        />
-
-    <Button
-        android:id="@+id/professorButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Proffesor"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="0dp" />
-
-
 
 </android.support.constraint.ConstraintLayout>
