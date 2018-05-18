@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/fontBold"
+        android:fontFamily="@font/fontbold"
         android:text="I  am"
         android:textColor="#FFFFFF"
         android:textSize="80dp"
@@ -44,7 +44,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/fontBold"
+        android:fontFamily="@font/fontbold"
         android:text="student"
         android:textColor="#FFFFFF"
         android:textSize="36dp"
@@ -54,7 +54,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/fontBold"
+        android:fontFamily="@font/fontbold"
         android:text="teacher"
         android:textColor="#FFFFFF"
         android:textSize="36dp"
