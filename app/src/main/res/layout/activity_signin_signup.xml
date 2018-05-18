@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_signin_signup"
+    android:background="@drawable/background2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fontBold"
+        android:text="STEM"
+        android:textColor="#FFFFFF"
+        android:textSize="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fontBold"
+        android:text="fun"
+        android:textColor="#ffffff"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <ImageView
+        android:layout_width="158dp"
+        android:layout_height="158dp"
+        android:src="@drawable/logo"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="149dp" />
+<!-- sign in-->
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="I have an account"
+        android:fontFamily="@font/fontBold"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="382dp"
+        android:background="@drawable/et_bg"
+        />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="I don't have an account"
+        android:fontFamily="@font/fontBold"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="462dp"
+        android:background="@drawable/et_bg"
+        />
+
+
+
+</android.support.constraint.ConstraintLayout>
