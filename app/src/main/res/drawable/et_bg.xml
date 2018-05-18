@@ -7,5 +7,5 @@
         android:bottomLeftRadius="20dp"/>
     <stroke
         android:color="#ffffff"
-        android:width="2dp"
+        android:width="2dp"></stroke>
 </shape>
