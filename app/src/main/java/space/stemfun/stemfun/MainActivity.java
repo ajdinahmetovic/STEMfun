@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     Button student;
@@ -18,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
         student = findViewById(R.id.studentButton);
         professor = findViewById(R.id.professorButton);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("a");
+        reference.setValue("aaaa");
 
         final Intent intent = new Intent(this, RegistrationActivity.class);
 

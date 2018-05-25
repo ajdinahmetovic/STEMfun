@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1093768614446",
+    "firebase_url": "https://stemfun-54bfc.firebaseio.com",
+    "project_id": "stemfun-54bfc",
+    "storage_bucket": "stemfun-54bfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093768614446:android:ff3898a5552fc148",
+        "android_client_info": {
+          "package_name": "space.stemfun.stemfun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093768614446-lopnbj8avrap79mdtj6e71mrmglbqk68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "space.stemfun.stemfun",
+            "certificate_hash": "73efc075bb67f8a082509bacf7680640f53bb4a5"
+          }
+        },
+        {
+          "client_id": "1093768614446-pqh36i2lo5v235su7715dgq8f2g5bq5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4PX26oh5Cgm1hQ3ZknvtU2ajAKezcW64"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093768614446-pqh36i2lo5v235su7715dgq8f2g5bq5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
