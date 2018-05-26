@@ -4,4 +4,5 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="go">GO</string>
+    <string name="s">S</string>
 </resources>
