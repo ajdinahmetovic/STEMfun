@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.167" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/studentButton"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:background="@drawable/student"
@@ -34,14 +34,14 @@
         app:layout_constraintVertical_bias="0.316" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/teacherButton"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:background="@drawable/teacher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/studentButton"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.316" />
 
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/studentButton"
         app:layout_constraintVertical_bias="0.272" />
 
     <TextView
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/teacherButton"
         app:layout_constraintVertical_bias="0.272" />
 
 </android.support.constraint.ConstraintLayout>
