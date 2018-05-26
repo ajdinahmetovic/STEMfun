@@ -18,7 +18,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         student = findViewById(R.id.studentButton);
-        teacher = findViewById(R.id.cast_notification_id);
+       // teacher = findViewById(R.id.cast_notification_id);
 
 
         student.setOnClickListener(new View.OnClickListener() {
