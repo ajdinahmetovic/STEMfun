@@ -20,10 +20,13 @@ public class AccountSelect extends AppCompatActivity {
         register = findViewById(R.id.register);
 
         final Intent registerIntent = new Intent(this, RegistrationActivity.class);
+        final Intent signinIntent = new Intent(this, SignInActivity.class);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(signinIntent);
 
             }
         });

@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".RandomGenerator"></activity>
     </application>
 
 </manifest>
