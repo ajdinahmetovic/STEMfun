@@ -17,9 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistrationActivity" />
+        <activity android:name=".SignUpAcitvity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".RandomGenerator"></activity>
+        <activity android:name=".RandomGenerator"/>
     </application>
 
 </manifest>

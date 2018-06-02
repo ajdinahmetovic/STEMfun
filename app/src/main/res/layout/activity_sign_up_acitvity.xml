@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="16dp">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -66,7 +66,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.298" />
+                app:layout_constraintVertical_bias="0.368" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -86,7 +86,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText"
-                app:layout_constraintVertical_bias="0.064" />
+                app:layout_constraintVertical_bias="0.121" />
 
 
             <EditText
@@ -107,7 +107,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText2"
-                app:layout_constraintVertical_bias="0.07" />
+                app:layout_constraintVertical_bias="0.199" />
 
 
             <EditText
@@ -128,15 +128,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText3"
-                app:layout_constraintVertical_bias="0.072" />
+                app:layout_constraintVertical_bias="0.275" />
 
             <ImageButton
                 android:id="@+id/imageButton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/student"
-                tools:layout_editor_absoluteX="80dp"
-                tools:layout_editor_absoluteY="527dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -146,23 +150,24 @@
                 android:text="Student"
                 android:textColor="#ffffff"
                 android:textSize="23sp"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.169"
+                app:layout_constraintHorizontal_bias="0.225"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText4"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.116" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/teacher"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintHorizontal_bias="0.774"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="527dp" />
+                app:layout_constraintTop_toBottomOf="@+id/editText4"
+                app:layout_constraintVertical_bias="0.409" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -173,10 +178,12 @@
                 android:textColor="#ffffff"
                 android:textSize="23sp"
                 app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.578"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/editText4"
                 app:layout_constraintVertical_bias="1.0"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:layout_editor_absoluteX="218dp" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <Button
                 android:id="@+id/signinButton"
@@ -187,8 +194,12 @@
                 android:text="@string/go"
                 android:textColor="#1D1926"
                 android:textSize="40sp"
-                tools:layout_editor_absoluteX="130dp"
-                tools:layout_editor_absoluteY="770dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.55"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton"
+                app:layout_constraintVertical_bias="1.0" />
 
 
         </android.support.constraint.ConstraintLayout>
