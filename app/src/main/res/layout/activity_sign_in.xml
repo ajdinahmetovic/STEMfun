@@ -77,12 +77,12 @@
 
     <Button
         android:id="@+id/signinButton"
-        android:layout_width="130dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_button"
         android:fontFamily="@font/fontbold"
         android:text="@string/go"
-        android:textColor="#ffffff"
+        android:textColor="#1D1926"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

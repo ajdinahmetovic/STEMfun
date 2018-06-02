@@ -75,16 +75,5 @@
         app:layout_constraintTop_toBottomOf="@+id/login"
         app:layout_constraintVertical_bias="0.369" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:background="@android:color/transparent"
-        android:padding="8dp"
-        android:drawablePadding="12dp"
-        android:hint="Username"
-        android:textColorHint="#ffffff"
-        android:maxLines="1"
-        android:layout_marginTop="70dp"/>
+
 </android.support.constraint.ConstraintLayout>
