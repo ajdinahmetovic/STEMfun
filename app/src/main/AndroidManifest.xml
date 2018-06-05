@@ -20,7 +20,8 @@
         <activity android:name=".SignUpAcitvity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".RandomGenerator"/>
+        <activity android:name=".RandomGenerator" />
+        <activity android:name=".MySpaceClassroomActivity"></activity>
     </application>
 
 </manifest>
