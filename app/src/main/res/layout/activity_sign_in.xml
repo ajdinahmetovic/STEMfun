@@ -64,6 +64,7 @@
         android:fontFamily="@font/fontitalic"
         android:hint="@string/password"
         android:paddingLeft="15dp"
+        android:inputType="textPassword"
         android:paddingRight="15dp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
