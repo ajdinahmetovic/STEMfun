@@ -29,9 +29,6 @@ public class SignUpAcitvity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_acitvity);
 
-        EditText fields [];
-        fields = new EditText[]{name, username, password, confirmPassword};
-
         mAuth = FirebaseAuth.getInstance();
 
         name = findViewById(R.id.name);
@@ -44,60 +41,65 @@ public class SignUpAcitvity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nameVal = name.getText().toString().trim();
-                usernameVal = username.getText().toString().trim();
-                passwordVal = password.getText().toString().trim();
-                confirmPasswordVal = confirmPassword.getText().toString().trim();
-
-                if(!(passwordVal.equals(confirmPasswordVal))){
-                    confirmPassword.setError("Passwords are different");
-                    confirmPassword.requestFocus();
-                }
-
-                dialog.setMessage("Registering");
-                dialog.show();
-                usernameVal = usernameVal+"@stemfun.space";
-                mAuth.createUserWithEmailAndPassword(usernameVal, passwordVal).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "You have been registered", Toast.LENGTH_SHORT);
-                            System.out.println("Registered");
-                            dialog.dismiss();
-
-                        } else if (!task.isSuccessful()) {
-                            dialog.dismiss();
-                            try{
-                                throw task.getException();
-                            } catch (FirebaseAuthWeakPasswordException e){
-                                password.setError("Weak password");
-                                password.requestFocus();
-                            } catch (FirebaseAuthUserCollisionException e){
-                                username.setError("Username taken");
-                                username.requestFocus();
-                            } catch (FirebaseAuthInvalidCredentialsException e){
-                                username.setError("Username is invalid");
-                                username.requestFocus();
-                            }catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-
-                        }
+                    nameVal = name.getText().toString().trim();
+                    usernameVal = username.getText().toString().trim();
+                    passwordVal = password.getText().toString().trim();
+                    confirmPasswordVal = confirmPassword.getText().toString().trim();
+                try {
+                    if (nameVal.isEmpty()){
+                        throw new EmptyName();
+                    } else if(usernameVal.isEmpty()){
+                        throw new EmptyUsername();
+                    } else if (!(passwordVal.equals(confirmPasswordVal))) {
+                        throw new PasswordsNotSame();
+                    } else if (passwordVal.isEmpty()){
+                        throw new EmptyPassword();
                     }
-                });
-
+                    dialog.setMessage("Registering");
+                    dialog.show();
+                    usernameVal = usernameVal + "@stemfun.space";
+                    mAuth.createUserWithEmailAndPassword(usernameVal, passwordVal).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "You have been registered", Toast.LENGTH_SHORT);
+                                System.out.println("Registered");
+                                dialog.dismiss();
+                            } else if (!task.isSuccessful()) {
+                                dialog.dismiss();
+                                try {
+                                    throw task.getException();
+                                } catch (FirebaseAuthWeakPasswordException e) {
+                                    password.setError("Password is weak");
+                                    password.requestFocus();
+                                } catch (FirebaseAuthUserCollisionException e) {
+                                    username.setError("Username already taken");
+                                    username.requestFocus();
+                                } catch (FirebaseAuthInvalidCredentialsException e) {
+                                    username.setError("Username is invalid");
+                                    username.requestFocus();
+                                }catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+                } catch (EmptyName e){
+                    name.setError("Name cant be empty");
+                    name.requestFocus();
+                } catch (EmptyUsername e){
+                    username.setError("Username cant be empty");
+                    username.requestFocus();
+                } catch (PasswordsNotSame e){
+                    password.setError("Password not same");
+                    password.requestFocus();
+                } catch (EmptyPassword e){
+                    password.setError("Password cant be empty");
+                    password.requestFocus();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
-
-
-
-
-
-
-
-
-
-
     }
 }

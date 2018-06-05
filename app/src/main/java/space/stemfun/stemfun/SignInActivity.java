@@ -40,37 +40,55 @@ public class SignInActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setMessage("Registering...");
+                dialog.setMessage("Registering");
                 dialog.show();
-                usernameVal = username.getText().toString().trim() + "@stemfun.space";
+
+                usernameVal = username.getText().toString().trim();
                 passwordVal = password.getText().toString().trim();
 
-                mAuth.signInWithEmailAndPassword(usernameVal, passwordVal).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                try {
+                    if (usernameVal.isEmpty()) {
+                        dialog.dismiss();
+                        throw new EmptyUsername();
+                    } else if (passwordVal.isEmpty()) {
+                        dialog.dismiss();
+                        throw new EmptyPassword();
+                    }
+                    mAuth.signInWithEmailAndPassword(usernameVal+ "@stemfun.space", passwordVal).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "LoggedIn", Toast.LENGTH_SHORT).show();
-                            startActivity(intent);
-                            dialog.dismiss();
-                        } else if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            try {
-                                throw task.getException();
-                            } catch (FirebaseAuthInvalidUserException e){
-                                username.setError("Username or password is wrong");
-                                username.requestFocus();
 
-                            } catch (Exception e){
-
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "LoggedIn", Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                                dialog.dismiss();
+                            } else if (!task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                                try {
+                                    throw task.getException();
+                                } catch (FirebaseAuthInvalidUserException e) {
+                                    username.setError("Username or password is wrong");
+                                    username.requestFocus();
+                                } catch (FirebaseAuthInvalidCredentialsException e){
+                                    password.setError("Username or password is wrong");
+                                    password.requestFocus();
+                                } catch (Exception e) {
+                                }
                             }
 
                         }
-
-                    }
-                });
-
+                    });
+                } catch (EmptyUsername e){
+                    username.setError("Username cant be empty");
+                    username.requestFocus();
+                } catch (EmptyPassword e){
+                    password.setError("Password cant be empty");
+                    password.requestFocus();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
             }
         });
