@@ -54,7 +54,7 @@ public class SignInActivity extends AppCompatActivity {
                         dialog.dismiss();
                         throw new EmptyPassword();
                     }
-                    mAuth.signInWithEmailAndPassword(usernameVal+ "@stemfun.space", passwordVal).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.signInWithEmailAndPassword(usernameVal + "@stemfun.space", passwordVal).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 

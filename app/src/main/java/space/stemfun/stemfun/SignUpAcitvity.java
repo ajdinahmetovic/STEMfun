@@ -1,6 +1,7 @@
 package space.stemfun.stemfun;
 
 import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,7 +79,7 @@ public class SignUpAcitvity extends AppCompatActivity {
                                 } catch (FirebaseAuthInvalidCredentialsException e) {
                                     username.setError("Username is invalid");
                                     username.requestFocus();
-                                }catch (Exception e) {
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }

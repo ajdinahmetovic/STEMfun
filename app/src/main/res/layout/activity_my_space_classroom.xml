@@ -77,7 +77,7 @@
         app:layout_constraintVertical_bias="0.109" />
 
     <TextView
-        <!--
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_light"
@@ -90,6 +90,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton6"
-        app:layout_constraintVertical_bias="0.187" />-->
+        app:layout_constraintVertical_bias="0.187" />
 
 </android.support.constraint.ConstraintLayout>
