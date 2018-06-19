@@ -39,6 +39,7 @@
         app:layout_constraintVertical_bias="0.222" />
 
     <EditText
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="20dp"
@@ -59,6 +60,7 @@
         app:layout_constraintVertical_bias="0.375" />
 
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="20dp"
@@ -80,6 +82,7 @@
         app:layout_constraintVertical_bias="0.752" />
 
     <Button
+        android:id="@+id/signinButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/shape_button"

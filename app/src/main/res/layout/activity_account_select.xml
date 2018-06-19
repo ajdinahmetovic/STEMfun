@@ -42,6 +42,7 @@
         app:layout_constraintVertical_bias="0.588" />
 
     <Button
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@drawable/shape_button_first"

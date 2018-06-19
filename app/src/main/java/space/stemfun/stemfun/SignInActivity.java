@@ -38,12 +38,12 @@ public class SignInActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         decorView.setSystemUiVisibility(uiOptions);
-        //username = findViewById(R.id.username);
-        //password = findViewById(R.id.password);
-        //signin = findViewById(R.id.signinButton);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        signin = findViewById(R.id.signinButton);
         dialog = new ProgressDialog(this);
         final Intent intent = new Intent(this, RandomGenerator.class);
-/*
+
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,8 +99,6 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
-*/
-
     }
 
 }

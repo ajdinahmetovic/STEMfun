@@ -56,7 +56,7 @@ public class SignUpAcitvity extends AppCompatActivity {
                     } else if (passwordVal.isEmpty()){
                         throw new EmptyPassword();
                     }
-                    dialog.setMessage("Registering");
+                    dialog.setMessage("Attemting to log you in");
                     dialog.show();
                     usernameVal = usernameVal + "@stemfun.space";
                     mAuth.createUserWithEmailAndPassword(usernameVal, passwordVal).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

@@ -22,7 +22,7 @@ public class AccountSelect extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
 
         login = findViewById(R.id.login);
-        //register = findViewById(R.id.register);
+        register = findViewById(R.id.register);
 
         final Intent registerIntent = new Intent(this, SignUpAcitvity.class);
         final Intent signinIntent = new Intent(this, SignInActivity.class);
