@@ -31,12 +31,19 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mAuth = FirebaseAuth.getInstance();
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-        signin = findViewById(R.id.signinButton);
+
+        //setContentView(R.layout.activity_account_select);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
+        //username = findViewById(R.id.username);
+        //password = findViewById(R.id.password);
+        //signin = findViewById(R.id.signinButton);
         dialog = new ProgressDialog(this);
         final Intent intent = new Intent(this, RandomGenerator.class);
-
+/*
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +99,7 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
-
+*/
 
     }
 
