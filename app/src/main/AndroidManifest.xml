@@ -21,7 +21,11 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".RandomGenerator" />
-        <activity android:name=".MySpaceClassroomActivity"></activity>
+        <activity android:name=".MySpaceClassroomActivity" />
+        <activity android:name=".TestingActivity" />
+        <activity
+            android:name=".MainTest"
+            android:label="@string/title_activity_main_test"></activity>
     </application>
 
 </manifest>

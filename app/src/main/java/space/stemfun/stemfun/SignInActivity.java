@@ -41,6 +41,7 @@ public class SignInActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         signin = findViewById(R.id.signinButton);
+
         dialog = new ProgressDialog(this);
         final Intent intent = new Intent(this, RandomGenerator.class);
 

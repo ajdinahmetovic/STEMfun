@@ -31,12 +31,12 @@ public class SignUpAcitvity extends AppCompatActivity {
         //setContentView(R.layout.activity_sign_up_acitvity);
 
         mAuth = FirebaseAuth.getInstance();
-
         //name = findViewById(R.id.name);
         //username = findViewById(R.id.username);
         //password = findViewById(R.id.password);
         //confirmPassword = findViewById(R.id.confirmPassword);
         //signup = findViewById(R.id.signupButton);
+
         dialog = new ProgressDialog(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
