@@ -14,7 +14,7 @@
         android:fontFamily="@font/bold"
         android:text="STEM fun"
         android:textColor="#ef626c"
-        android:textSize="60sp"
+        android:textSize="65sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -22,90 +22,54 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/shape_button_first"
-        android:fontFamily="@font/bold"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:text="I have an account"
-        android:textColor="#070c13"
-        android:textSize="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.588" />
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/shape_button_first"
-        android:fontFamily="@font/bold"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:text="I don't have an account"
-        android:textColor="#070c13"
-        android:textSize="28dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.32" />
-
-
-    <!--<TextView
-        android:id="@+id/textView4"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/font_regular"
-        android:text="STEM"
+        android:fontFamily="@font/regular"
+        android:text="Do you have an account?"
         android:textColor="#ffffff"
-        android:textSize="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
-
-
-    <Button
-        android:id="@+id/login"
-        android:layout_width="340dp"
-        android:layout_height="46dp"
-        android:background="@drawable/shape_button"
-        android:text="I have an account"
-        android:textColor="#000000"
-        android:fontFamily="@font/font_regular"
-        android:textSize="28dp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintVertical_bias="0.434" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="220dp"
+        android:layout_height="70dp"
+        android:background="@drawable/shape_button_first"
+        android:fontFamily="@font/bold"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="I have"
+        android:textColor="#070c13"
+        android:textSize="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.237" />
 
     <Button
         android:id="@+id/register"
-        android:layout_width="340dp"
-        android:layout_height="46dp"
-        android:background="@drawable/shape_button"
-        android:text="I don't have an account"
-        android:textColor="#000000"
-        android:textSize="28dp"
-        android:fontFamily="@font/font_regular"
+        android:layout_width="220dp"
+        android:layout_height="70dp"
+        android:background="@drawable/shape_button_first_first"
+        android:fontFamily="@font/bold"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="I don't"
+        android:textColor="#070c13"
+        android:textSize="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.369" />-->
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
 
 </android.support.constraint.ConstraintLayout>

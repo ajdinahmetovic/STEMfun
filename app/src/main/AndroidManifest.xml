@@ -16,12 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistrationActivity" />
         <activity android:name=".SignUpAcitvity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".RandomGenerator" />
-        <activity android:name=".MySpaceClassroomActivity" />
         <activity android:name=".TestingActivity" />
         <activity
             android:name=".MainTest"
