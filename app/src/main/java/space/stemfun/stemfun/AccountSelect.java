@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AccountSelect extends AppCompatActivity {
@@ -34,29 +33,32 @@ public class AccountSelect extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
         //System.out.println(user.getDisplayName());
-        final Intent main = new Intent(this, MainActivity.class);
+        final Intent random = new Intent(this, MainActivity.class);
 
         if(user != null){
-            startActivity(main);
-            //System.out.println(user.getDisplayName());
+            startActivity(random);
+            System.out.println(user.getDisplayName());
         }
 
         final Intent signinIntent = new Intent(this, SignInActivity.class);
+        final Intent signupIntent = new Intent(this, SignUpAcitvity.class);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(signinIntent);
-                //System.out.println(user.getDisplayName());
+//                System.out.println(user.getDisplayName());
+                finish();
             }
         });
-/*
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(registerIntent);
+                startActivity(signupIntent);
+                //finish();
             }
         });
-*/
+
     }
 }

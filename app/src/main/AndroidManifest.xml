@@ -24,7 +24,6 @@
         <activity
             android:name=".MainTest"
             android:label="@string/title_activity_main_test" />
-        <activity android:name=".SignUpNewActivity"></activity>
     </application>
 
 </manifest>

@@ -47,7 +47,10 @@ public class MainFragment extends Fragment {
         isExpanded = false;
 
 //        Typeface font  = Typeface.createFromAsset(getActivity().getAssets(), "res/font/bold.ttf");
-
+        Typeface font = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            font = getResources().getFont(R.font.bold);
+        }
         mainLayout = view.findViewById(R.id.mainLinearLayout);
 
         final float scale = view.getContext().getResources().getDisplayMetrics().density;
@@ -66,19 +69,21 @@ public class MainFragment extends Fragment {
 
         int random;
 
-        for(int i=0;i<8;i++){
+        for(int i=0;i<5;i++){
             random = (int) (Math.random() * 3);
             System.out.println("Rand"+random);
             CardView card = new CardView(getContext());
+            card.setRadius(50);
             card.setLayoutParams(cardParams);
-            card.setCardElevation((int) (5*scale+0.5f));
+            //card.setCardElevation((int) (5*scale+0.5f));
+
 
             card.setBackgroundColor(Color.parseColor(colors[random]));
             //card.setRadius((int) (50*scale+0.5f));
 
             TextView levelText = new TextView(getContext());
             levelText.setText("Level "+(i+1));
-            //levelText.setTypeface(font);
+            levelText.setTypeface(font);
             levelText.setTextSize(40);
             levelText.setGravity(Gravity.CENTER);
             levelText.setTextColor(Color.WHITE);
@@ -88,7 +93,7 @@ public class MainFragment extends Fragment {
             final LinearLayout dropGroup = new LinearLayout(getContext());
             dropGroup.setOrientation(LinearLayout.VERTICAL);
             dropGroup.setLayoutParams(dropDownParams);
-            for(int j = 0;j<10;j++) {
+            for(int j = 0;j<5;j++) {
 
 
                 final LinearLayout dropDown = new LinearLayout(getContext());
@@ -140,7 +145,7 @@ public class MainFragment extends Fragment {
 
                     }
                 });
-                card.setRadius((float) 255);
+               // card.setRadius((float) 255);
 
             mainLayout.addView(card);
 

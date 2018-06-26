@@ -14,3 +14,6 @@ class PasswordsNotSame extends Exception {
 class EmptyPassword extends Exception {
     public EmptyPassword(){super();}
 }
+class TypeNotSelected extends Exception {
+    public TypeNotSelected() {super();}
+}

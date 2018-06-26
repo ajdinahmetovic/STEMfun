@@ -1,11 +1,15 @@
 package space.stemfun.stemfun;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 public class RandomGenerator extends AppCompatActivity {
     ImageView image;
@@ -18,11 +22,16 @@ public class RandomGenerator extends AppCompatActivity {
     String fields [] = new String[5];
     TextView text;
 
+    /////////
+    User user;
+    ////////
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_generator);
         image = findViewById(R.id.image);
+
 
         fields [0] = "null";
         fields [1] = "Science";
