@@ -34,11 +34,11 @@ public class AccountSelect extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
         //System.out.println(user.getDisplayName());
-        final Intent random = new Intent(this, MainTest.class);
+        final Intent main = new Intent(this, MainActivity.class);
 
         if(user != null){
-            startActivity(random);
-            System.out.println(user.getDisplayName());
+            startActivity(main);
+            //System.out.println(user.getDisplayName());
         }
 
         final Intent signinIntent = new Intent(this, SignInActivity.class);
@@ -47,7 +47,7 @@ public class AccountSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(signinIntent);
-                System.out.println(user.getDisplayName());
+                //System.out.println(user.getDisplayName());
             }
         });
 /*
