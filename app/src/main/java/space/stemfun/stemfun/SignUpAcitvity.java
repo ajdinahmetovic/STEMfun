@@ -83,9 +83,9 @@ public class SignUpAcitvity extends AppCompatActivity {
                     user.setPassword(password.getText().toString().trim());
                     confirmPasswordVal = confirmPassword.getText().toString().trim();
                     if(student.isChecked()){
-                        user.setAccountType(AccountType.STUDENT);
+                        user.setAccountType(UserType.STUDENT);
                     } else if (teacher.isChecked()) {
-                        user.setAccountType(AccountType.TEACHER);
+                        user.setAccountType(UserType.TEACHER);
                     }
 
                 try {
@@ -153,7 +153,8 @@ public class SignUpAcitvity extends AppCompatActivity {
                     password.requestFocus();
                 } catch (TypeNotSelected e){
                     student.setError("Please select Account Type");
-                    teacher.setError("Please Select one of these");
+                    student.requestFocus();
+                    //teacher.setError("Please Select one of these");
                 } catch (EmptyPassword e){
                     password.setError("Password cant be empty");
                     password.requestFocus();

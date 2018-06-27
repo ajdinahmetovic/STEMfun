@@ -64,7 +64,7 @@ public class RandomGenerator extends AppCompatActivity {
                         imgs[i] =R.drawable.science;
                         //img.setImageDrawable(getDrawable(R.drawable.science));
                     case 2:
-                        imgs[i] = R.drawable.technology;
+                        imgs[i] = R.drawable.tech_icon;
                         //img.setImageDrawable(getDrawable(R.drawable.technology));
                     case 3:
                         imgs[i] = R.drawable.engineering;
@@ -85,7 +85,7 @@ public class RandomGenerator extends AppCompatActivity {
         if(randoms[0]==1){
             image.setImageResource(R.drawable.science);
         } else if(randoms[0]==2) {
-            image.setImageResource(R.drawable.technology);
+            image.setImageResource(R.drawable.tech_icon);
         } else if(randoms[0]==3) {
             image.setImageResource(R.drawable.engineering);
         } else if(randoms[0]==4) {
@@ -113,7 +113,7 @@ public class RandomGenerator extends AppCompatActivity {
                         if(randoms[1]==1){
                             image.setImageResource(R.drawable.science);
                         } else if(randoms[1]==2) {
-                            image.setImageResource(R.drawable.technology);
+                            image.setImageResource(R.drawable.tech_icon);
                         } else if(randoms[1]==3) {
                             image.setImageResource(R.drawable.engineering);
                         } else if(randoms[1]==4) {
@@ -140,7 +140,7 @@ public class RandomGenerator extends AppCompatActivity {
                                         if(randoms[2]==1){
                                             image.setImageResource(R.drawable.science);
                                         } else if(randoms[2]==2) {
-                                            image.setImageResource(R.drawable.technology);
+                                            image.setImageResource(R.drawable.tech_icon);
                                         } else if(randoms[2]==3) {
                                             image.setImageResource(R.drawable.engineering);
                                         } else if(randoms[2]==4) {
@@ -166,7 +166,7 @@ public class RandomGenerator extends AppCompatActivity {
                                                         if(randoms[3]==1){
                                                             image.setImageResource(R.drawable.science);
                                                         } else if(randoms[2]==2) {
-                                                            image.setImageResource(R.drawable.technology);
+                                                            image.setImageResource(R.drawable.tech_icon);
                                                         } else if(randoms[3]==3) {
                                                             image.setImageResource(R.drawable.engineering);
                                                         } else if(randoms[3]==4) {
@@ -193,7 +193,7 @@ public class RandomGenerator extends AppCompatActivity {
                                                                         if(randoms[4]==1){
                                                                             image.setImageResource(R.drawable.science);
                                                                         } else if(randoms[4]==2) {
-                                                                            image.setImageResource(R.drawable.technology);
+                                                                            image.setImageResource(R.drawable.tech_icon);
                                                                         } else if(randoms[4]==3) {
                                                                             image.setImageResource(R.drawable.engineering);
                                                                         } else if(randoms[4]==4) {

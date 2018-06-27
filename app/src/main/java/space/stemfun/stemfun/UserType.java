@@ -1,6 +1,6 @@
 package space.stemfun.stemfun;
 
-public enum AccountType {
+public enum UserType {
     STUDENT,
     TEACHER
 }

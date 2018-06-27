@@ -5,10 +5,21 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private AccountType accountType;
+    private UserType accountType;
     private String email;
     private int trophies;
+    private UserAge userAge;
 
+    public User (){
+        setUserAge(UserAge.junior);
+    }
+
+    public UserAge getUserAge() {
+        return userAge;
+    }
+    public void setUserAge(UserAge userAge) {
+        this.userAge = userAge;
+    }
     public String getName() {
         return name;
     }
@@ -33,11 +44,11 @@ public class User {
         this.password = password;
     }
 
-    public AccountType getAccountType() {
+    public UserType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(AccountType accountType) {
+    public void setAccountType(UserType accountType) {
         this.accountType = accountType;
     }
 

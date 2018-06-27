@@ -24,7 +24,8 @@
         <activity
             android:name=".MainTest"
             android:label="@string/title_activity_main_test" />
-        <activity android:name=".QuestionNewActivity"></activity>
+        <activity android:name=".QuestionNewActivity" />
+        <activity android:name=".QuestionActivity"></activity>
     </application>
 
 </manifest>
