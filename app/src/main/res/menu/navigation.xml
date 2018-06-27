@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/space_navigation"
         android:title="Space"
         android:id="@+id/space"
         android:iconTint="@color/grey"
@@ -13,7 +13,7 @@
         android:id="@+id/account"
         android:iconTint="@color/grey"/>
     <item
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/classroom_navigation"
         android:title="Classroom"
         android:id="@+id/classroom"
         android:iconTint="@color/grey"/>
