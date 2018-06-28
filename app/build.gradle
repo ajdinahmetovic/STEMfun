@@ -19,6 +19,8 @@ android {
 }
 
 dependencies {
+
+    implementation project(":stem_gamev1")
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.android.support:design:27.1.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])

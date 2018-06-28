@@ -1,13 +1,16 @@
 package space.stemfun.stemfun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.stem.spacev1.UnityPlayerActivity;
 
 import com.google.gson.Gson;
 
@@ -22,9 +25,7 @@ public class RandomGenerator extends AppCompatActivity {
     String fields [] = new String[5];
     TextView text;
 
-    /////////
-    User user;
-    ////////
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,19 @@ public class RandomGenerator extends AppCompatActivity {
         image = findViewById(R.id.image);
 
 
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
+
         fields [0] = "null";
         fields [1] = "Science";
         fields [2] = "Technology";
         fields [3] = "Engineering";
         fields [4] = "Math";
+
+        intent = new Intent(this, UnityPlayerActivity.class);
 
         image = findViewById(R.id.image);
         text = findViewById(R.id.text);
@@ -208,6 +217,17 @@ public class RandomGenerator extends AppCompatActivity {
                                                                             public void onAnimationEnd(Animation animation) {
                                                                                 text.setText(fields[randoms[4]]);
 
+                                                                                if(fields[randoms[4]].toLowerCase().equals("technology")){
+                                                                                    intent.putExtra("gameName", "techScene");
+                                                                                    startActivity(intent);
+                                                                                    finish();
+                                                                                }else {
+
+                                                                                    intent.putExtra("gameName", fields[randoms[4]].toLowerCase() + "Scene");
+                                                                                    startActivity(intent);
+                                                                                    finish();
+                                                                                    System.out.println(fields[randoms[4]].toLowerCase() + "Scene");
+                                                                                }
                                                                             }
 
                                                                             @Override
