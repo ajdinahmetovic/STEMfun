@@ -135,7 +135,6 @@ public class MainFragment extends Fragment {
                 img.setImageResource(R.drawable.locked_icon);
             }
 
-
             textLayout.addView(img);
 
             card.addView(textLayout);

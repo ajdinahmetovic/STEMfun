@@ -37,7 +37,7 @@ public class AccountSelect extends AppCompatActivity {
 
         if(user != null){
             startActivity(random);
-            System.out.println(user.getDisplayName());
+            //System.out.println(user.getDisplayName());
         }
 
         final Intent signinIntent = new Intent(this, SignInActivity.class);
@@ -56,7 +56,7 @@ public class AccountSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(signupIntent);
-                //finish();
+                finish();
             }
         });
 

@@ -44,12 +44,12 @@ public class SignInActivity extends AppCompatActivity {
         signin = findViewById(R.id.signinButton);
 
         dialog = new ProgressDialog(this);
-        final Intent intent = new Intent(this, RandomGenerator.class);
+        final Intent intent = new Intent(this, MainActivity.class);
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setMessage("Registering");
+                dialog.setMessage("Attempting to log you in ... ");
                 dialog.show();
 
                 usernameVal = username.getText().toString().trim();
@@ -69,8 +69,11 @@ public class SignInActivity extends AppCompatActivity {
 
 
                             if (task.isSuccessful()) {
+
+
                                 Toast.makeText(getApplicationContext(), "LoggedIn", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
+                                finish();
                                 dialog.dismiss();
                             } else if (!task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
