@@ -40,6 +40,7 @@ public class SignUpAcitvity extends AppCompatActivity {
     Intent main;
     TinyDB localDb;
     User user;
+    boolean isStudent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,25 @@ public class SignUpAcitvity extends AppCompatActivity {
 
         dialog = new ProgressDialog(this);
 
+
+
+
+        student.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isStudent = true;
+
+                student.setBackgroundResource(R.drawable.student_baby);
+                student.setText("Junior");
+                teacher.setBackgroundResource(R.drawable.student);
+                teacher.setText("Senior");
+                student.setChecked(false);
+
+            }
+        });
+
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,9 +102,8 @@ public class SignUpAcitvity extends AppCompatActivity {
                     //passwordVal = password.getText().toString().trim();
                     user.setPassword(password.getText().toString().trim());
                     confirmPasswordVal = confirmPassword.getText().toString().trim();
-                    if(student.isChecked()){
-                        user.setAccountType(UserType.STUDENT);
-                    } else if (teacher.isChecked()) {
+
+                    if (teacher.isChecked()&&!isStudent) {
                         user.setAccountType(UserType.TEACHER);
                     }
 
@@ -100,7 +119,7 @@ public class SignUpAcitvity extends AppCompatActivity {
                     } else if (!student.isChecked() && !teacher.isChecked()){
                         throw new TypeNotSelected();
                     }
-                    dialog.setMessage("Attemting to log you in");
+                    dialog.setMessage("Creating account ... ");
                     dialog.show();
                     user.setEmail(user.getUsername()+"@stemfun.space");
                     mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
