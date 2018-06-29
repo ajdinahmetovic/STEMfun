@@ -73,10 +73,10 @@ public class MyAccount extends Fragment {
         databaseReference.child("stemfun-54bfc");
 
 
-        user = localDb.getObject("currentUser", User.class);
+       // user = localDb.getObject("currentUser", User.class);
 
 
-
+/*
         name.setText(user.getName());
         username.setText(user.getUsername());
         currentPassword.setText(user.getPassword());
@@ -84,7 +84,7 @@ public class MyAccount extends Fragment {
         username.setText(user.getUsername());
         currentPassword.setText(user.getPassword());
 
-
+*/
         apply.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -137,7 +137,6 @@
             android:id="@+id/student"
             android:fontFamily="@font/bold"
             android:layout_width="80dp"
-            android:text="Student"
             android:textColor="#FFFF"
             android:layout_height="80dp"
             android:background="@drawable/student" />
@@ -152,7 +151,6 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:textColor="#fff"
-            android:text="Teacher"
             android:background="@drawable/teacher" />
     </RadioGroup>
 

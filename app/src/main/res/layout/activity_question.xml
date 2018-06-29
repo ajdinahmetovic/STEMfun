@@ -2,98 +2,122 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/question_cons"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/question_background"
     tools:context=".QuestionActivity">
 
-    <Button
-        android:id="@+id/choice1"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:background="@drawable/shape_ques"
-        android:fontFamily="@font/bold"
-        android:paddingBottom="3dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingTop="3dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/choice2"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:background="@drawable/shape_ques"
-        android:fontFamily="@font/bold"
-        android:paddingBottom="3dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingTop="3dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/choice1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04000002" />
 
-    <Button
-        android:id="@+id/question"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@drawable/shape_ques"
-        android:clickable="false"
-        android:fontFamily="@font/bold"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:textSize="33sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choice1"
-        app:layout_constraintVertical_bias="0.035" />
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/choice1"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/shape_ques"
+                android:fontFamily="@font/bold"
+                android:paddingBottom="3dp"
+                android:paddingLeft="3dp"
 
-    <Button
-        android:id="@+id/choice3"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:background="@drawable/shape_ques"
-        android:fontFamily="@font/bold"
-        android:paddingBottom="3dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingTop="3dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question"
-        app:layout_constraintVertical_bias="0.51" />
+                android:paddingRight="3dp"
+                android:paddingTop="3dp"
+                android:textSize="15sp"
+                />
 
-    <Button
-        android:id="@+id/choice4"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:background="@drawable/shape_ques"
-        android:fontFamily="@font/bold"
-        android:paddingBottom="3dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingTop="3dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/choice3"
-        app:layout_constraintTop_toBottomOf="@+id/question" />
+            <View
+                android:layout_width="50dp"
+                android:layout_height="1dp"/>
+
+            <Button
+                android:id="@+id/choice2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/shape_ques"
+                android:fontFamily="@font/bold"
+                android:paddingBottom="3dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"/>
+        <Button
+            android:id="@+id/question"
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            android:layout_height="200dp"
+            android:background="@drawable/shape_ques"
+            android:clickable="false"
+            android:fontFamily="@font/bold"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:textSize="25sp"
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"/>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/choice3"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/shape_ques"
+                android:fontFamily="@font/bold"
+                android:paddingBottom="3dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp"
+                android:textSize="15sp"
+                />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="1dp"/>
+
+            <Button
+                android:id="@+id/choice4"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/shape_ques"
+                android:fontFamily="@font/bold"
+                android:paddingBottom="3dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="3dp"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>

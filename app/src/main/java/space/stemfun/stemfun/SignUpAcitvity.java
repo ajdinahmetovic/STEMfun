@@ -73,14 +73,11 @@ public class SignUpAcitvity extends AppCompatActivity {
 
         dialog = new ProgressDialog(this);
 
-
-
-
         student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isStudent = true;
 
+                isStudent = true;
                 student.setBackgroundResource(R.drawable.student_baby);
                 student.setText("Junior");
                 teacher.setBackgroundResource(R.drawable.student);

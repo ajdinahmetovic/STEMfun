@@ -1,11 +1,20 @@
 package space.stemfun.stemfun;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static android.widget.ListPopupWindow.WRAP_CONTENT;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -77,6 +88,21 @@ public class QuestionActivity extends AppCompatActivity {
                     i++;
                 }
 
+/*
+                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.popup_medal, null, false),WRAP_CONTENT,WRAP_CONTENT, true);
+                pw.setElevation(1000);
+                pw.showAtLocation(findViewById(R.id.question_cons), Gravity.CENTER, 0, 0);
+*/
+
+
+                Button back = findViewById(R.id.backButton);
+/*
+                ViewDialog dialog = new ViewDialog();
+                dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER,backb);
+*/
+
+
                 questionText.setText(question.getQuestion());
                 choice1.setText(question.getChoice1());
                 choice2.setText(question.getChoice2());
@@ -92,9 +118,14 @@ public class QuestionActivity extends AppCompatActivity {
                         if(choice1.getText().toString().equals(question.getAnswer())){
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             startActivity(intent);
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
-                            startActivity(intent);
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
+
+                            //startActivity(intent);
                         }
                     }
                 });
@@ -104,8 +135,12 @@ public class QuestionActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         if(choice2.getText().toString().equals(question.getAnswer())){
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
                         }
                     }
                 });
@@ -115,8 +150,12 @@ public class QuestionActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         if(choice3.getText().toString().equals(question.getAnswer())){
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
                         }
                     }
                 });
@@ -126,8 +165,12 @@ public class QuestionActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         if(choice4.getText().toString().equals(question.getAnswer())){
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
+                            ViewDialog dialog = new ViewDialog();
+                            dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
                         }
                     }
                 });
@@ -146,14 +189,6 @@ public class QuestionActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
-
 
     }
 }

@@ -75,7 +75,7 @@ public class MainFragment extends Fragment {
 
         int random;
 
-        for(int i=0;i<5;i++){
+        for(int i=0;i<3;i++){
             random = (int) (Math.random() * 3);
             System.out.println("Rand"+random);
             CardView card = new CardView(getContext());
@@ -103,6 +103,9 @@ public class MainFragment extends Fragment {
             View viewport = new View(getContext());
             viewport.setLayoutParams(imgParams);
 
+            ViewDialog dialog = new ViewDialog();
+            //dialog.showDialog(getActivity(), PopupType.TROPHY);
+
 
             final TextView levelText = new TextView(getContext());
             levelText.setText("Level "+(i+1));
@@ -118,7 +121,14 @@ public class MainFragment extends Fragment {
             //#010b19
             levelText.setLayoutParams(textParams);
 
-            textLayout.addView(levelText);
+            if(i==0){
+                card.addView(levelText);
+                //img.setImageResource(R.drawable.unlocked_icon);
+            } else {
+                textLayout.addView(levelText);
+            }
+
+
             viewport = new View(getContext());
             viewport.setLayoutParams(imgParams);
 
@@ -130,19 +140,23 @@ public class MainFragment extends Fragment {
 
 
             if(i==0){
-                img.setImageResource(R.drawable.unlocked_icon);
+
+                //img.setImageResource(R.drawable.unlocked_icon);
             } else {
                 img.setImageResource(R.drawable.locked_icon);
+                textLayout.addView(img);
+                //textLayout.addView(levelText);
+                card.addView(textLayout);
             }
 
-            textLayout.addView(img);
+            textLayout.setGravity(Gravity.CENTER);
 
-            card.addView(textLayout);
+
 
             final LinearLayout dropGroup = new LinearLayout(getContext());
             dropGroup.setOrientation(LinearLayout.VERTICAL);
             dropGroup.setLayoutParams(dropDownParams);
-            for(int j = 0;j<4;j++) {
+            for(int j = 0;j<3;j++) {
                 isExpanded = false;
 
                 final LinearLayout dropDown = new LinearLayout(getContext());

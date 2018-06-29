@@ -228,6 +228,8 @@ public class RandomGenerator extends AppCompatActivity {
                                                                                     finish();
                                                                                     System.out.println(fields[randoms[4]].toLowerCase() + "Scene");
                                                                                 }
+
+
                                                                             }
 
                                                                             @Override
