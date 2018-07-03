@@ -16,6 +16,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -25,12 +31,21 @@ public class SignInActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
     FirebaseAuth mAuth;
+    FirebaseUser firebaseUser;
+
+    DatabaseReference reference;
+
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mAuth = FirebaseAuth.getInstance();
+
+        user = new User();
+
+        reference = FirebaseDatabase.getInstance().getReference().child("users");
 
         //setContentView(R.layout.activity_account_select);
         View decorView = getWindow().getDecorView();
@@ -69,6 +84,22 @@ public class SignInActivity extends AppCompatActivity {
 
 
                             if (task.isSuccessful()) {
+
+                                firebaseUser = mAuth.getCurrentUser();
+                                reference.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        user = dataSnapshot.getValue(User.class);
+                                        TinyDB localdb = new TinyDB(getApplicationContext());
+                                        localdb.putObject("currentUser", user);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
 
 
                                 Toast.makeText(getApplicationContext(), "LoggedIn", Toast.LENGTH_SHORT).show();
