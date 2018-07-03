@@ -83,13 +83,14 @@ public class Question {
     }
 
 
-    public Question(String question, String choice1, String choice2, String choice3, String choice4, String answer, String field) {
+    public Question(String question,String description, String choice1, String choice2, String choice3, String choice4, String answer) {
         this.question = question;
         this.choice1 = choice1;
         this.choice2 = choice2;
         this.choice3 = choice3;
         this.choice4 = choice4;
         this.answer = answer;
+        this.description = description;
         //   this.field = field;
     }
 

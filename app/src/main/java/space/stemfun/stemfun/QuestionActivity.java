@@ -123,7 +123,9 @@ public class QuestionActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
+                            dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
+
 
                             //startActivity(intent);
                         }
@@ -135,11 +137,13 @@ public class QuestionActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         if(choice2.getText().toString().equals(question.getAnswer())){
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
-                            ViewDialog dialog = new ViewDialog();
+                            final ViewDialog dialog = new ViewDialog();
+                            View view = getLayoutInflater().inflate(R.layout.popup_medal, null);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
+                            dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
                         }
                     }
@@ -155,6 +159,8 @@ public class QuestionActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
+                            System.out.println("xxxxxxx"+question.getDescription());
+                            dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
                         }
                     }
@@ -170,6 +176,7 @@ public class QuestionActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
+                            dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
                         }
                     }

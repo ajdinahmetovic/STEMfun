@@ -8,6 +8,16 @@ public class User {
     private UserType accountType;
     private String email;
     private int trophies;
+    private int medals;
+
+    public int getMedals() {
+        return medals;
+    }
+
+    public void setMedals(int medals) {
+        this.medals = medals;
+    }
+
     private UserAge userAge;
 
     public User (){

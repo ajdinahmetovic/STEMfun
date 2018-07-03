@@ -2,13 +2,20 @@ package space.stemfun.stemfun;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ViewDialog {
+
+
+
+    private String explanation;
+
     public void showDialog (final Activity activity, PopupType popupType){
 
         final Dialog dialog = new Dialog(activity);
@@ -17,30 +24,85 @@ public class ViewDialog {
 
         if(popupType == PopupType.MEDAL){
             dialog.setContentView(R.layout.popup_medal);
+            Button collect = dialog.findViewById(R.id.collectButton);
+
+            collect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TinyDB localDb = new TinyDB(activity.getApplicationContext());
+                    User user = localDb.getObject("currentUser", User.class);
+                    user.setMedals(user.getMedals()+1);
+
+                }
+            });
+
         } else if (popupType == PopupType.TROPHY) {
             dialog.setContentView(R.layout.popup_trophy);
+
+            Button collect = dialog.findViewById(R.id.collectButton);
+
+            collect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("Collected 1 trophy");
+                    TinyDB localDb = new TinyDB(activity.getApplicationContext());
+                    User user = localDb.getObject("currentUser", User.class);
+                    user.setTrophies(user.getTrophies()+1);
+                }
+            });
+
+
         } else if(popupType == PopupType.WRONG_ANSWER) {
             dialog.setContentView(R.layout.popup_wrong_answer);
+            Button back = dialog.findViewById(R.id.backButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(),MainActivity.class);
+                    activity.startActivity(intent);
+                }
+            });
+
+            Button expalantion = dialog.findViewById(R.id.explanationButton);
+            expalantion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ViewDialog dialog1 = new ViewDialog();
+                    dialog1.setExplanation(explanation);
+                    System.out.println(explanation);
+                    dialog1.showDialog(activity, PopupType.EXPLANATION);
+                }
+            });
+
+        } else if(popupType == PopupType.EXPLANATION){
+            dialog.setContentView(R.layout.popup_explanation);
+            TextView explanationView = dialog.findViewById(R.id.explanationText);
+            explanationView.setText(explanation);
+
+            Button back = dialog.findViewById(R.id.backButton);
+
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+                    activity.startActivity(intent);
+
+                }
+            });
+
         }
 
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-/*
-        ((ViewGroup)dialog.getWindow().getDecorView())
-                .getChildAt(0).startAnimation(AnimationUtils.loadAnimation(
-                activity,android.R.anim.slide_in_left));
-                */
-/*
-        buttons [0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((ViewGroup)dialog.getWindow().getDecorView())
-                        .getChildAt(0).startAnimation(AnimationUtils.loadAnimation(
-                        activity,android.R.anim.slide_out_right));
-                dialog.dismiss();
-            }
-        });
-*/
         dialog.show();
 
     }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
 }
