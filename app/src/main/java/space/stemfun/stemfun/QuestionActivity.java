@@ -87,7 +87,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         //Query myQuery = databaseReference.limitToFirst(100);
 
-        databaseReference.child("questions").child("junior").child("science").child((user.getQuestionProgress().get(currentField.getFieldValue()).toString())).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("questions").child(user.getUserAge().getValue()).child(currentField.toString().toLowerCase()).child((user.getQuestionProgress().get(currentField.getFieldValue()).toString())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         question = dataSnapshot.getValue(Question.class);
@@ -101,13 +101,10 @@ public class QuestionActivity extends AppCompatActivity {
                 pw.setElevation(1000);
                 pw.showAtLocation(findViewById(R.id.question_cons), Gravity.CENTER, 0, 0);
 */
-
 /*
                 ViewDialog dialog = new ViewDialog();
                 dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER,backb);
 */
-
-
                 questionText.setText(question.getQuestion());
                 choice1.setText(question.getChoice1());
                 choice2.setText(question.getChoice2());

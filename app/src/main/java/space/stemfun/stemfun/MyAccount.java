@@ -68,6 +68,8 @@ public class MyAccount extends Fragment {
         currentPassword = view.findViewById(R.id.password);
         confirmPassword = view.findViewById(R.id.confirmPassword);
         apply = view.findViewById(R.id.apply);
+        trophies = view.findViewById(R.id.trophies);
+        medals = view.findViewById(R.id.medals);
 
         localDb = new TinyDB(getContext());
 
@@ -80,13 +82,14 @@ public class MyAccount extends Fragment {
         user = localDb.getObject("currentUser", User.class);
 
 
-
         name.setText(user.getName());
         username.setText(user.getUsername());
         currentPassword.setText(user.getPassword());
         name.setText(user.getName());
         username.setText(user.getUsername());
         currentPassword.setText(user.getPassword());
+        trophies.setText(String.valueOf(user.getTrophies()));
+        medals.setText(String.valueOf(user.getMedals()));
 
 
         apply.setOnClickListener(new View.OnClickListener() {

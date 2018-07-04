@@ -222,7 +222,7 @@ public class RandomGenerator extends AppCompatActivity {
                                                                             public void onAnimationEnd(Animation animation) {
                                                                                 text.setText(fields[randoms[4]]);
 
-                                                                                localDb.putObject("currentField", fieldsE[randoms[4]]);
+                                                                                localDb.putObject("currentField", fieldsE[randoms[4]-1]);
 
                                                                                 if(fields[randoms[4]].toLowerCase().equals("technology")){
                                                                                     /*

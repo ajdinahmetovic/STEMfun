@@ -51,10 +51,9 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <EditText
         android:id="@+id/username"
@@ -85,8 +84,8 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/shape_edit_text"
         android:fontFamily="@font/light"
-        android:inputType="textPassword"
         android:hint="Password"
+        android:inputType="textPassword"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:textColor="#FFFFFF"
@@ -104,11 +103,11 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
-        android:inputType="textPassword"
         android:layout_marginRight="20dp"
         android:background="@drawable/shape_edit_text"
         android:fontFamily="@font/light"
         android:hint="Password again"
+        android:inputType="textPassword"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:textColor="#FFFFFF"
@@ -128,36 +127,66 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPassword"
         app:layout_constraintVertical_bias="0.169">
 
         <RadioButton
             android:id="@+id/student"
-            android:fontFamily="@font/bold"
             android:layout_width="80dp"
-            android:textColor="#FFFF"
             android:layout_height="80dp"
-            android:background="@drawable/student" />
+            android:background="@drawable/student"
+            android:fontFamily="@font/bold"
+            android:textColor="#FFFF" />
 
         <View
             android:layout_width="80dp"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp" />
 
         <RadioButton
             android:id="@+id/teacher"
-            android:fontFamily="@font/bold"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:textColor="#fff"
-            android:background="@drawable/teacher" />
+            android:background="@drawable/teacher"
+            android:fontFamily="@font/bold"
+            android:textColor="#fff" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/studentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:text="Student"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signupButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountType"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/teacherText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:text="Teacher"
+        android:fontFamily="@font/regular"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/signupButton"
+        app:layout_constraintTop_toBottomOf="@+id/accountType"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/signupButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/shape_button"
         android:fontFamily="@font/bold"
         android:text="@string/go"

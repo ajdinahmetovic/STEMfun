@@ -1,5 +1,6 @@
 package space.stemfun.stemfun;
 
+import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +38,8 @@ public class SignUpAcitvity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     RadioButton student, teacher;
+    TextView studentText, teacherText;
+
     RadioGroup accountType;
     Intent main;
     TinyDB localDb;
@@ -61,6 +65,8 @@ public class SignUpAcitvity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirmPassword);
         signup = findViewById(R.id.signupButton);
         localDb = new TinyDB(this);
+        studentText = findViewById(R.id.studentText);
+        teacherText = findViewById(R.id.teacherText);
 
         main = new Intent(this, MainActivity.class);
 
@@ -76,13 +82,13 @@ public class SignUpAcitvity extends AppCompatActivity {
         student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                user.setAccountType(UserType.STUDENT);
                 isStudent = true;
                 student.setBackgroundResource(R.drawable.student_baby);
-                student.setText("Junior");
+                studentText.setText("Junior");
                 teacher.setBackgroundResource(R.drawable.student);
-                teacher.setText("Senior");
-                student.setChecked(false);
+                teacherText.setText(" Senior");
+                //student.setChecked(false);
 
             }
         });
@@ -102,6 +108,12 @@ public class SignUpAcitvity extends AppCompatActivity {
 
                     if (teacher.isChecked()&&!isStudent) {
                         user.setAccountType(UserType.TEACHER);
+                    } else {
+                        if(student.isChecked()){
+                            user.setUserAge(UserAge.junior);
+                        } else {
+                            user.setUserAge(UserAge.senior);
+                        }
                     }
 
                 try {
