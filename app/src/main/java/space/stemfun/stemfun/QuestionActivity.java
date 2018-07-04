@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.widget.ListPopupWindow.WRAP_CONTENT;
 
@@ -37,6 +38,8 @@ public class QuestionActivity extends AppCompatActivity {
     public String nums [] = new String[50];
     private ArrayList<String> num = new ArrayList<>();
     private String answerClicked;
+
+    User user;
 
     Intent intent;
 
@@ -71,23 +74,27 @@ public class QuestionActivity extends AppCompatActivity {
 
         localDb = new TinyDB(this);
 
-        //databaseReference.child("stemfun-54bfc").child("questions").child("junior").child("science").child("11");
+        final Field currentField  = localDb.getObject("currentField", Field.class);
+
+
+        if(currentField.getFieldValue()==-1){
+            Intent intent = new Intent(this, RandomGenerator.class);
+            startActivity(intent);
+        }
+
+        user = localDb.getObject("currentUser", User.class);
+        //databaseReference.child("stemfun-54bfc").child("questions).child("junior").child("science").child("11");
 
         //Query myQuery = databaseReference.limitToFirst(100);
 
-        databaseReference.child("questions").child("junior").child("science").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("questions").child("junior").child("science").child((user.getQuestionProgress().get(currentField.getFieldValue()).toString())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                boolean hasQuestion = false;
-                while(!hasQuestion){
-                    if(dataSnapshot.hasChild(String.valueOf(i))){
-                        question = dataSnapshot.child(String.valueOf(i)).getValue(Question.class);
-                        hasQuestion=true;
-                    }
-                    i++;
-                }
-
+                        question = dataSnapshot.getValue(Question.class);
+                List <Integer> list = user.getQuestionProgress();
+                list.set(currentField.getFieldValue(), list.get(currentField.getFieldValue())+1);
+                user.setQuestionProgress(list);
+                localDb.putObject("currentUser", user);
 /*
                 LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.popup_medal, null, false),WRAP_CONTENT,WRAP_CONTENT, true);
@@ -95,8 +102,6 @@ public class QuestionActivity extends AppCompatActivity {
                 pw.showAtLocation(findViewById(R.id.question_cons), Gravity.CENTER, 0, 0);
 */
 
-
-                Button back = findViewById(R.id.backButton);
 /*
                 ViewDialog dialog = new ViewDialog();
                 dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER,backb);

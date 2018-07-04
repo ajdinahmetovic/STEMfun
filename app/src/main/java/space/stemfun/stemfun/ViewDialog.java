@@ -32,6 +32,8 @@ public class ViewDialog {
                     TinyDB localDb = new TinyDB(activity.getApplicationContext());
                     User user = localDb.getObject("currentUser", User.class);
                     user.setMedals(user.getMedals()+1);
+                    Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+                    activity.startActivity(intent);
 
                 }
             });
@@ -48,6 +50,8 @@ public class ViewDialog {
                     TinyDB localDb = new TinyDB(activity.getApplicationContext());
                     User user = localDb.getObject("currentUser", User.class);
                     user.setTrophies(user.getTrophies()+1);
+                    Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+                    activity.startActivity(intent);
                 }
             });
 

@@ -1,5 +1,9 @@
 package space.stemfun.stemfun;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+
 public class User {
 
     private String name;
@@ -8,7 +12,17 @@ public class User {
     private UserType accountType;
     private String email;
     private int trophies;
-    private int medals;
+    private int medals;                                 // S T E M
+    private List<Integer> questionProgress = Arrays.asList(0,0,0,0);
+
+
+    public List<Integer> getQuestionProgress() {
+        return questionProgress;
+    }
+
+    public void setQuestionProgress(List<Integer> questionProgress) {
+        this.questionProgress = questionProgress;
+    }
 
     public int getMedals() {
         return medals;

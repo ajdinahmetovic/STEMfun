@@ -128,6 +128,8 @@ public class SignUpAcitvity extends AppCompatActivity {
                                 dialog.dismiss();
                                 firebaseUser = mAuth.getCurrentUser();
 
+                                localDb.putObject("currentField", Field.EMPTY);
+
                                 databaseReference.child("users").child(firebaseUser.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

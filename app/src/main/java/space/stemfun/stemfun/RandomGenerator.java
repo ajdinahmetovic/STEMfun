@@ -25,6 +25,8 @@ public class RandomGenerator extends AppCompatActivity {
     String fields [] = new String[5];
     TextView text;
 
+    TinyDB localDb;
+
     Intent intent;
 
     @Override
@@ -45,6 +47,9 @@ public class RandomGenerator extends AppCompatActivity {
         fields [2] = "Technology";
         fields [3] = "Engineering";
         fields [4] = "Math";
+        final Field [] fieldsE = {Field.SCIENCE, Field.TECHNOLOGY,Field.ENGINEERING, Field.MATH};
+
+        localDb = new TinyDB(this);
 
         intent = new Intent(this, UnityPlayerActivity.class);
 
@@ -217,14 +222,19 @@ public class RandomGenerator extends AppCompatActivity {
                                                                             public void onAnimationEnd(Animation animation) {
                                                                                 text.setText(fields[randoms[4]]);
 
+                                                                                localDb.putObject("currentField", fieldsE[randoms[4]]);
+
                                                                                 if(fields[randoms[4]].toLowerCase().equals("technology")){
+                                                                                    /*
                                                                                     intent.putExtra("gameName", "techScene");
                                                                                     startActivity(intent);
+                                                                                    */
                                                                                     finish();
                                                                                 }else {
-
+                                                                                    /*
                                                                                     intent.putExtra("gameName", fields[randoms[4]].toLowerCase() + "Scene");
                                                                                     startActivity(intent);
+                                                                                    */
                                                                                     finish();
                                                                                     System.out.println(fields[randoms[4]].toLowerCase() + "Scene");
                                                                                 }
