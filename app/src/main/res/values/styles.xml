@@ -11,4 +11,14 @@
         <item name="android:colorForeground">@color/foreground_material_light</item>
     </style>
 
+
+    <style name="BottomNavigation">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="itemBackground">@drawable/backg_selector</item>
+        <item name="itemIconTint">@drawable/selector</item>
+        <item name="itemTextColor">@drawable/text_selector</item>
+
+
+    </style>
+
 </resources>

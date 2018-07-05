@@ -55,8 +55,9 @@ public class SignInActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
 
         username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
         signin = findViewById(R.id.signinButton);
+
+        password = findViewById(R.id.password);
 
         dialog = new ProgressDialog(this);
         final Intent intent = new Intent(this, MainActivity.class);
@@ -69,7 +70,6 @@ public class SignInActivity extends AppCompatActivity {
 
                 usernameVal = username.getText().toString().trim();
                 passwordVal = password.getText().toString().trim();
-
                 try {
                     if (usernameVal.isEmpty()) {
                         dialog.dismiss();
@@ -99,8 +99,6 @@ public class SignInActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-
 
                                 Toast.makeText(getApplicationContext(), "LoggedIn", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);

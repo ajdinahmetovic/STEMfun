@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/colorPrimary">
+    <item android:state_checked="true" android:state_first="true" android:drawable="@drawable/color_for_bottom"></item>
+    <item android:state_checked="true" android:state_middle="true" android:drawable="@drawable/color_for_bottom_middle"></item>
+    <item android:state_checked="true" android:state_last="true" android:drawable="@drawable/color_for_bottom_right"/>
+    <item android:state_checked="true" android:drawable="@drawable/color_for_bottom_middle"/>
+    <item android:drawable="@android:color/transparent"/>
+</animated-selector>

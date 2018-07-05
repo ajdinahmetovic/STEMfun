@@ -58,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.447" />
 
+
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
@@ -66,8 +67,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/shape_edit_text"
         android:fontFamily="@font/light"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        android:hint="Username"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:textColor="#FFFFFF"
@@ -78,7 +78,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.185" />
+        app:layout_constraintVertical_bias="0.185"/>
+
+
+
 
     <Button
         android:id="@+id/signinButton"

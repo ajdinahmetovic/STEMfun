@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+    BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit);
             switch (item.getItemId()) {
                 case R.id.space:
                     transaction.replace(R.id.mainLayout, new MainFragment()).commit();
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         decorView.setSystemUiVisibility(uiOptions);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottomNavigation);
+         navigation = (BottomNavigationView) findViewById(R.id.bottomNavigation);
          navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         FragmentManager manager = getSupportFragmentManager();

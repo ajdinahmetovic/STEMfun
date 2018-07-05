@@ -39,9 +39,11 @@ public class AccountSelect extends AppCompatActivity {
             startActivity(random);
             //System.out.println(user.getDisplayName());
         }
-
+        final Intent testIntetn = new Intent(this, MainTest.class);
         final Intent signinIntent = new Intent(this, SignInActivity.class);
         final Intent signupIntent = new Intent(this, SignUpAcitvity.class);
+
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
