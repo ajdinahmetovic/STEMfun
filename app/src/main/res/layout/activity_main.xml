@@ -20,7 +20,8 @@
 <!--
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/main_final">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -38,7 +39,7 @@
                 android:id="@+id/imageView5"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/technology"
+                android:src="@drawable/tech_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.152"
@@ -99,7 +100,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
                 app:layout_constraintVertical_bias="0.092">
-                <!-#ef626c pink #faff7f yellow #91a6ff blue
+                #ef626c pink #faff7f yellow #91a6ff blue
 
                 <TextView
                     android:layout_width="match_parent"
@@ -146,7 +147,9 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/item"
+        app:itemTextColor="@color/item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
