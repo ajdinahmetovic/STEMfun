@@ -73,7 +73,6 @@ public class RandomGenerator extends AppCompatActivity {
 
         final Animation zoomin = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
         final Animation zoomout = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomout);
-        //image.startAnimation(zoomin);
 
         previous[0] = (int) (Math.random() * 4 + 1);
         previous[1] = (int) (Math.random() * 4 + 1);

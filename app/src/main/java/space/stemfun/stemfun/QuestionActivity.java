@@ -86,11 +86,8 @@ public class QuestionActivity extends AppCompatActivity {
             throw new FieldNotSelected();
         }
 
-
         //databaseReference.child("stemfun-54bfc").child("questions).child("junior").child("science").child("11");
-
         //Query myQuery = databaseReference.limitToFirst(100);
-
         databaseReference.child("questions").child(user.getUserAge().getValue()).child(user.getCurrentField().toString().toLowerCase()).child((user.getQuestionProgress().get(user.getCurrentField().getFieldValue()).toString())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -108,22 +105,21 @@ public class QuestionActivity extends AppCompatActivity {
 
                 System.out.println(question.getAnswer());
 
-
                 choice1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (choice1.getText().toString().equals(question.getAnswer())) {
-                            Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
-                            startActivity(intent);
+                            //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
+                            //startActivity(intent);
+                            user.setQuesGame(user.getQuesGame()+1);
                             ViewDialog dialog = new ViewDialog();
+                            localDb.putObject("currentUser", user);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
-
-
                             //startActivity(intent);
                         }
                     }
@@ -133,12 +129,14 @@ public class QuestionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (choice2.getText().toString().equals(question.getAnswer())) {
-                            Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             final ViewDialog dialog = new ViewDialog();
+                            user.setQuesGame(user.getQuesGame()+1);
+                            localDb.putObject("currentUser", user);
                             View view = getLayoutInflater().inflate(R.layout.popup_medal, null);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
@@ -150,11 +148,13 @@ public class QuestionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (choice3.getText().toString().equals(question.getAnswer())) {
-                            Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
+                            user.setQuesGame(user.getQuesGame()+1);
+                            localDb.putObject("currentUser", user);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             System.out.println("xxxxxxx" + question.getDescription());
                             dialog.setExplanation(question.getDescription());
@@ -167,11 +167,13 @@ public class QuestionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (choice4.getText().toString().equals(question.getAnswer())) {
-                            Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
+                            user.setQuesGame(user.getQuesGame()+1);
+                            localDb.putObject("currentUser", user);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);

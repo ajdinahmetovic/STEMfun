@@ -51,6 +51,9 @@ public class ViewDialog {
                     TinyDB localDb = new TinyDB(activity.getApplicationContext());
                     User user = localDb.getObject("currentUser", User.class);
                     user.setTrophies(user.getTrophies()+1);
+                    localDb.putObject("currentUser", user);
+                    Intent intent = new Intent(activity.getApplicationContext(),MainActivity.class);
+                    dialog.dismiss();
                 }
             });
 

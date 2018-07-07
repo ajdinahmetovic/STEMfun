@@ -9,7 +9,18 @@ public class UserProgress {
     private int medals;
     private List<Integer> questionProgress = Arrays.asList(0,0,0,0);
     private Field currentField = Field.EMPTY;
-    private int level;
+    private int level = 1;
+    private int underLevel = 1;
+    private int quesGame = 1;
+
+
+    public int getQuesGame() {
+        return quesGame;
+    }
+
+    public void setQuesGame(int quesGame) {
+        this.quesGame = quesGame;
+    }
 
     public int getTrophies() {
         return trophies;
@@ -58,12 +69,4 @@ public class UserProgress {
     public void setUnderLevel(int underLevel) {
         this.underLevel = underLevel;
     }
-
-    private int underLevel;
-
-
-
-
-
-
 }

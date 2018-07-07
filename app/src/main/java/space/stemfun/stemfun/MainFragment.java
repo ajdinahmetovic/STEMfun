@@ -23,6 +23,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainFragment extends Fragment {
 
@@ -31,6 +34,8 @@ public class MainFragment extends Fragment {
 
     boolean isExpanded;
 
+    User user;
+    TinyDB localDb;
     ProgressBar dialogs [] = new ProgressBar[4];
     TextView progressText [] = new TextView[4];
 
@@ -55,6 +60,10 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         //isExpanded = false;
 
+
+        localDb = new TinyDB(getContext());
+        user = localDb.getObject("currentUser", User.class);
+
         dialogs[0] = view.findViewById(R.id.scineceProgress);
         dialogs[1] = view.findViewById(R.id.techProgress);
         dialogs[2] = view.findViewById(R.id.engineeringProgress);
@@ -65,10 +74,12 @@ public class MainFragment extends Fragment {
         progressText[2] = view.findViewById(R.id.engineeringProgressText);
         progressText[3] = view.findViewById(R.id.mathProgressText);
 
+        List<Integer> list = user.getQuestionProgress();
+
         for(int i = 0;i<4;i++){
             int num = (int) (Math.random() * 100 + 1);
-            dialogs[i].setProgress(num);
-            progressText[i].setText(num+"%");
+            dialogs[i].setProgress(list.get(i));
+            progressText[i].setText(list.get(i)+"%");
         }
 
 
@@ -97,7 +108,27 @@ public class MainFragment extends Fragment {
 
         int random;
 
-        for(int i=0;i<3;i++){
+        if(user.getQuesGame()%2==0 && user.getQuesGame()!=0){
+            //ViewDialog dialog = new ViewDialog();
+            //dialog.showDialog(getActivity(), PopupType.MEDAL);
+            user.setCurrentField(Field.EMPTY);
+            user.setUnderLevel(user.getUnderLevel()+1);
+            user.setQuesGame(user.getQuesGame()+1);
+            localDb.putObject("currentUser", user);
+        }
+
+        if(user.getUnderLevel() == 4){
+            ViewDialog dialog = new ViewDialog();
+            dialog.showDialog(getActivity(), PopupType.TROPHY);
+            user.setTrophies(user.getTrophies()+1);
+            user.setUnderLevel(1);
+            user.setQuesGame(0);
+            user.setLevel(user.getLevel()+1);
+            localDb.putObject("currentUser",user);
+        }
+
+        for(int i=0;i<5;i++){
+
             random = (int) (Math.random() * 3);
             System.out.println("Rand"+random);
             CardView card = new CardView(getContext());
@@ -143,7 +174,7 @@ public class MainFragment extends Fragment {
             //#010b19
             levelText.setLayoutParams(textParams);
 
-            if(i==0){
+            if(i<user.getLevel()){
                 card.addView(levelText);
                 //img.setImageResource(R.drawable.unlocked_icon);
             } else {
@@ -159,7 +190,7 @@ public class MainFragment extends Fragment {
             img.setLayoutParams(imgParams);
 
 
-            if(i==0){
+            if(i<user.getLevel()){
 
                 //img.setImageResource(R.drawable.unlocked_icon);
             } else {
@@ -179,13 +210,24 @@ public class MainFragment extends Fragment {
             for(int j = 0;j<3;j++) {
                 isExpanded = false;
 
+
                 final LinearLayout dropDown = new LinearLayout(getContext());
+
+               if(j<user.getUnderLevel()){
+                   dropDown.setBackgroundColor(Color.parseColor(colors[random]));
+               } else {
+                   dropDown.setBackgroundColor(Color.parseColor("#595959"));
+               }
+
+                //dropDown.setBackgroundColor(Color.parseColor(colors[random]));
                 dropDown.setOrientation(LinearLayout.HORIZONTAL);
                 dropDown.setLayoutParams(dropDownParams);
 
                 View distancer = new View(getContext());
                 distancer.setLayoutParams(distancerParams);
                 dropDown.addView(distancer);
+
+                final int b = j;
 
                 final Button game = new Button(getContext());
                 game.setLayoutParams(buttonParams);
@@ -194,7 +236,11 @@ public class MainFragment extends Fragment {
                 game.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(gameActivity);
+                        if(b<user.getUnderLevel()){
+                            startActivity(gameActivity);
+                        } else {
+                            Toast.makeText(getContext(),"Locked",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 dropDown.addView(game);
@@ -210,7 +256,12 @@ public class MainFragment extends Fragment {
                 question.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(questionClass);
+                        if(b<user.getUnderLevel()){
+                            startActivity(questionClass);
+                        } else {
+                            Toast.makeText(getContext(),"Locked",Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
                 dropDown.addView(question);
@@ -225,7 +276,8 @@ public class MainFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        if(levelText.getText().equals("Level 1")){
+
+                        if(levelText.getText().toString().substring(levelText.getText().toString().length()-1, levelText.getText().toString().length()).equals(String.valueOf(user.getLevel()))){
 
                             if (isExpanded) {
                                 dropGroup.setVisibility(View.GONE);
@@ -236,11 +288,9 @@ public class MainFragment extends Fragment {
                                 dropGroup.animate().alpha(1.0f);
                                 isExpanded = true;
                             }
-
                         } else {
                             Toast.makeText(getContext(), "This level is locked", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
                // card.setRadius((float) 255);
