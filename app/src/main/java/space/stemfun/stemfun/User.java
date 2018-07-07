@@ -4,17 +4,37 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-public class User {
+public class User extends UserProgress {
 
     private String name;
     private String username;
     private String password;
     private UserType accountType;
     private String email;
+
+    public UserProgress getUserProgress() {
+        return userProgress;
+    }
+
+    public void setUserProgress(UserProgress userProgress) {
+        this.userProgress = userProgress;
+    }
+
+    private UserProgress userProgress;
+    /*
     private int trophies;
     private int medals;                                 // S T E M
     private List<Integer> questionProgress = Arrays.asList(0,0,0,0);
+    private Field currentField = Field.EMPTY;
 
+
+    public Field getCurrentField() {
+        return currentField;
+    }
+
+    public void setCurrentField(Field currentField) {
+        this.currentField = currentField;
+    }
 
     public List<Integer> getQuestionProgress() {
         return questionProgress;
@@ -31,7 +51,14 @@ public class User {
     public void setMedals(int medals) {
         this.medals = medals;
     }
+        public int getTrophies() {
+        return trophies;
+    }
 
+    public void setTrophies(int trophies) {
+        this.trophies = trophies;
+    }
+*/
     private UserAge userAge;
 
     public User (){
@@ -84,11 +111,5 @@ public class User {
         this.email = email;
     }
 
-    public int getTrophies() {
-        return trophies;
-    }
 
-    public void setTrophies(int trophies) {
-        this.trophies = trophies;
-    }
 }

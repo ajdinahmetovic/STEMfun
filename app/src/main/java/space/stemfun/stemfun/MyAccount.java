@@ -47,7 +47,6 @@ public class MyAccount extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,7 +149,6 @@ public class MyAccount extends Fragment {
                                             }
                                         });
 
-
                                     } else {
                                         try{
                                             dialog.dismiss();
@@ -181,7 +179,6 @@ public class MyAccount extends Fragment {
                                                 }
                                             }
                                         });
-
                                     } else {
                                         try{
                                             dialog.dismiss();
@@ -192,7 +189,6 @@ public class MyAccount extends Fragment {
                                         } catch (Exception e) {
                                         }
                                     }
-
                                 }
                             });
                         }
@@ -205,7 +201,6 @@ public class MyAccount extends Fragment {
                         confirmPassword.requestFocus();
                     }
 
-
                 } else {
                     dialog.dismiss();
                     System.out.println("No changes");
@@ -213,11 +208,6 @@ public class MyAccount extends Fragment {
 
             }
         });
-
-
-
-
-
         return view;
     }
 

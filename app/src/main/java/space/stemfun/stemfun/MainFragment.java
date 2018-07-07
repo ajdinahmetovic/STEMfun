@@ -1,6 +1,7 @@
 package space.stemfun.stemfun;
 
 import android.animation.Animator;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,9 @@ public class MainFragment extends Fragment {
     LinearLayout mainLayout;
 
     boolean isExpanded;
+
+    ProgressBar dialogs [] = new ProgressBar[4];
+    TextView progressText [] = new TextView[4];
 
     private String [] colors = {"#91a6ff", "#ef626c", "#faff7f"};
 
@@ -49,6 +54,23 @@ public class MainFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         //isExpanded = false;
+
+        dialogs[0] = view.findViewById(R.id.scineceProgress);
+        dialogs[1] = view.findViewById(R.id.techProgress);
+        dialogs[2] = view.findViewById(R.id.engineeringProgress);
+        dialogs[3] = view.findViewById(R.id.mathProgress);
+
+        progressText[0] = view.findViewById(R.id.scienceProgressText);
+        progressText[1] = view.findViewById(R.id.techProgressText);
+        progressText[2] = view.findViewById(R.id.engineeringProgressText);
+        progressText[3] = view.findViewById(R.id.mathProgressText);
+
+        for(int i = 0;i<4;i++){
+            int num = (int) (Math.random() * 100 + 1);
+            dialogs[i].setProgress(num);
+            progressText[i].setText(num+"%");
+        }
+
 
         Typeface font  = Typeface.createFromAsset(getActivity().getAssets(), "bold.ttf");
 
@@ -127,8 +149,6 @@ public class MainFragment extends Fragment {
             } else {
                 textLayout.addView(levelText);
             }
-
-
             viewport = new View(getContext());
             viewport.setLayoutParams(imgParams);
 
@@ -167,14 +187,14 @@ public class MainFragment extends Fragment {
                 distancer.setLayoutParams(distancerParams);
                 dropDown.addView(distancer);
 
-                Button game = new Button(getContext());
+                final Button game = new Button(getContext());
                 game.setLayoutParams(buttonParams);
                 game.setBackgroundResource(R.drawable.joystick);
-                final Intent randomGameGenerator = new Intent(getContext(), RandomGenerator.class);
+                final Intent gameActivity = new Intent(getContext(), GameActivity.class);
                 game.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(randomGameGenerator);
+                        startActivity(gameActivity);
                     }
                 });
                 dropDown.addView(game);

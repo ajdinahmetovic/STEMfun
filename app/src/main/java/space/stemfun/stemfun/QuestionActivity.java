@@ -69,42 +69,37 @@ public class QuestionActivity extends AppCompatActivity {
 
         intent = new Intent(this, MainActivity.class);
 
-
         question = new Question();
 
         localDb = new TinyDB(this);
+        user = localDb.getObject("currentUser", User.class);
 
-        final Field currentField  = localDb.getObject("currentField", Field.class);
 
+    try {
+        if (user.getCurrentField().getFieldValue() == -1) {
+            System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 
-        if(currentField.getFieldValue()==-1){
             Intent intent = new Intent(this, RandomGenerator.class);
+            intent.putExtra("whatIs", false);
             startActivity(intent);
+            finish();
+            throw new FieldNotSelected();
         }
 
-        user = localDb.getObject("currentUser", User.class);
+
         //databaseReference.child("stemfun-54bfc").child("questions).child("junior").child("science").child("11");
 
         //Query myQuery = databaseReference.limitToFirst(100);
 
-        databaseReference.child("questions").child(user.getUserAge().getValue()).child(currentField.toString().toLowerCase()).child((user.getQuestionProgress().get(currentField.getFieldValue()).toString())).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("questions").child(user.getUserAge().getValue()).child(user.getCurrentField().toString().toLowerCase()).child((user.getQuestionProgress().get(user.getCurrentField().getFieldValue()).toString())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        question = dataSnapshot.getValue(Question.class);
-                List <Integer> list = user.getQuestionProgress();
-                list.set(currentField.getFieldValue(), list.get(currentField.getFieldValue())+1);
+                question = dataSnapshot.getValue(Question.class);
+                List<Integer> list = user.getQuestionProgress();
+                list.set(user.getCurrentField().getFieldValue(), list.get(user.getCurrentField().getFieldValue()) + 1);
                 user.setQuestionProgress(list);
                 localDb.putObject("currentUser", user);
-/*
-                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.popup_medal, null, false),WRAP_CONTENT,WRAP_CONTENT, true);
-                pw.setElevation(1000);
-                pw.showAtLocation(findViewById(R.id.question_cons), Gravity.CENTER, 0, 0);
-*/
-/*
-                ViewDialog dialog = new ViewDialog();
-                dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER,backb);
-*/
+
                 questionText.setText(question.getQuestion());
                 choice1.setText(question.getChoice1());
                 choice2.setText(question.getChoice2());
@@ -117,7 +112,7 @@ public class QuestionActivity extends AppCompatActivity {
                 choice1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(choice1.getText().toString().equals(question.getAnswer())){
+                        if (choice1.getText().toString().equals(question.getAnswer())) {
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             startActivity(intent);
                             ViewDialog dialog = new ViewDialog();
@@ -137,7 +132,7 @@ public class QuestionActivity extends AppCompatActivity {
                 choice2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(choice2.getText().toString().equals(question.getAnswer())){
+                        if (choice2.getText().toString().equals(question.getAnswer())) {
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             final ViewDialog dialog = new ViewDialog();
                             View view = getLayoutInflater().inflate(R.layout.popup_medal, null);
@@ -154,14 +149,14 @@ public class QuestionActivity extends AppCompatActivity {
                 choice3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(choice3.getText().toString().equals(question.getAnswer())){
+                        if (choice3.getText().toString().equals(question.getAnswer())) {
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
                             Toast.makeText(getApplicationContext(), "Your answer is wrong please try again", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
-                            System.out.println("xxxxxxx"+question.getDescription());
+                            System.out.println("xxxxxxx" + question.getDescription());
                             dialog.setExplanation(question.getDescription());
                             dialog.showDialog(QuestionActivity.this, PopupType.WRONG_ANSWER);
                         }
@@ -171,7 +166,7 @@ public class QuestionActivity extends AppCompatActivity {
                 choice4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(choice4.getText().toString().equals(question.getAnswer())){
+                        if (choice4.getText().toString().equals(question.getAnswer())) {
                             Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
@@ -185,19 +180,27 @@ public class QuestionActivity extends AppCompatActivity {
                 });
 
 
-
-
                 //localDb.putObject("question", question);
                 //question = dataSnapshot.getValue(Question.class);
                 //System.out.println(dataSnapshot.getKey());
                 //System.out.println(dataSnapshot.getValue());
                 //System.out.println(question.getQuestion());
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+    }
+    catch (FieldNotSelected e){
+
+    }
+
+    catch (Exception e){
+        e.printStackTrace();
+    }
+
 
     }
 }

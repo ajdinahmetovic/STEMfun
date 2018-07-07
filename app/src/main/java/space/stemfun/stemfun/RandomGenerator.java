@@ -25,7 +25,10 @@ public class RandomGenerator extends AppCompatActivity {
     String fields [] = new String[5];
     TextView text;
 
+    boolean what;
+
     TinyDB localDb;
+    User user;
 
     Intent intent;
 
@@ -35,6 +38,8 @@ public class RandomGenerator extends AppCompatActivity {
         setContentView(R.layout.activity_random_generator);
         image = findViewById(R.id.image);
 
+        final Intent game = new Intent(this, GameActivity.class);
+        final Intent question = new Intent(this, QuestionActivity.class);
 
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -53,8 +58,18 @@ public class RandomGenerator extends AppCompatActivity {
 
         intent = new Intent(this, UnityPlayerActivity.class);
 
+        user = localDb.getObject("currentUser", User.class);
+
         image = findViewById(R.id.image);
         text = findViewById(R.id.text);
+
+        final Intent in = getIntent();
+
+        final Bundle bundle = in.getExtras();
+        what = bundle.getBoolean("whatIs");
+
+        System.out.println(in.getStringExtra("isGame"));
+
 
         final Animation zoomin = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
         final Animation zoomout = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomout);
@@ -224,22 +239,27 @@ public class RandomGenerator extends AppCompatActivity {
 
                                                                                 localDb.putObject("currentField", fieldsE[randoms[4]-1]);
 
-                                                                                if(fields[randoms[4]].toLowerCase().equals("technology")){
-                                                                                    /*
-                                                                                    intent.putExtra("gameName", "techScene");
-                                                                                    startActivity(intent);
-                                                                                    */
-                                                                                    finish();
-                                                                                }else {
-                                                                                    /*
-                                                                                    intent.putExtra("gameName", fields[randoms[4]].toLowerCase() + "Scene");
-                                                                                    startActivity(intent);
-                                                                                    */
-                                                                                    finish();
-                                                                                    System.out.println(fields[randoms[4]].toLowerCase() + "Scene");
-                                                                                }
+                                                                                //if(fields[randoms[4]].toLowerCase().equals("technology")){
 
+                                                                                    if(what){
+                                                                                        System.out.println(bundle.get("isGame"));
+                                                                                        if(fields[randoms[4]].toLowerCase().equals("technology")){
+                                                                                            game.putExtra("gameName","techScene" );
+                                                                                        }else {
+                                                                                            game.putExtra("gameName", fields[randoms[4]] + "Scene");
+                                                                                        }
+                                                                                        user.setCurrentField(fieldsE[randoms[4]-1]);
+                                                                                        localDb.putObject("currentUser", user);
+                                                                                        startActivity(game);
 
+                                                                                    } else if (!what) {
+
+                                                                                        user.setCurrentField(fieldsE[randoms[4]-1]);
+                                                                                        localDb.putObject("currentUser", user);
+                                                                                        startActivity(question);
+                                                                                    }
+
+                                                                                    finish();
                                                                             }
 
                                                                             @Override

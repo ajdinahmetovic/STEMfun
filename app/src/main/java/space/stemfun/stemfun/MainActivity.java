@@ -26,6 +26,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigation;
+    int k=0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,17 +36,24 @@ public class MainActivity extends AppCompatActivity {
 
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit);
+            //transaction.setCustomAnimations(R.anim.pop_enter, R.anim.pop_exit, R.anim.enter, R.anim.exit);
             switch (item.getItemId()) {
                 case R.id.space:
-                    transaction.replace(R.id.mainLayout, new MainFragment()).commit();
-                    return true;
+                        transaction.replace(R.id.mainLayout, new MainFragment());
+                        transaction.commit();
+                        return true;
                 case R.id.account:
-                    transaction.replace(R.id.mainLayout, new MyAccount()).commit();
-                    return true;
+
+                        transaction.replace(R.id.mainLayout, new MyAccount());
+                        transaction.commit();
+                        return true;
+
                 case R.id.classroom:
-                    transaction.replace(R.id.mainLayout, new Classroom()).commit();
+
+                    transaction.replace(R.id.mainLayout, new Classroom());
+                    transaction.commit();
                     return true;
+
             }
             return false;
         }

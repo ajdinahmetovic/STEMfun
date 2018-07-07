@@ -17,3 +17,6 @@ class EmptyPassword extends Exception {
 class TypeNotSelected extends Exception {
     public TypeNotSelected() {super();}
 }
+class FieldNotSelected extends Exception {
+    public FieldNotSelected() {super();}
+}
