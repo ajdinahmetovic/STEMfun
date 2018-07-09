@@ -3,12 +3,17 @@ package space.stemfun.stemfun;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.util.Size;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
 
 public class ViewDialog {
 
@@ -26,9 +31,14 @@ public class ViewDialog {
             dialog.setContentView(R.layout.popup_medal);
             Button collect = dialog.findViewById(R.id.collectButton);
 
+            KonfettiView confetti = dialog.findViewById(R.id.confetti);
+
             collect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    //KonfettiView confetti = dialog.findViewById(R.id.confetti);
+
                     TinyDB localDb = new TinyDB(activity.getApplicationContext());
                     User user = localDb.getObject("currentUser", User.class);
                     user.setMedals(user.getMedals()+1);

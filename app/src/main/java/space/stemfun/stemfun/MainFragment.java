@@ -1,6 +1,7 @@
 package space.stemfun.stemfun;
 
 import android.animation.Animator;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nl.dionsegijn.konfetti.Confetti;
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 
 
 public class MainFragment extends Fragment {
@@ -59,6 +66,12 @@ public class MainFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         //isExpanded = false;
+
+
+
+
+
+
 
 
         localDb = new TinyDB(getContext());
@@ -117,9 +130,33 @@ public class MainFragment extends Fragment {
             localDb.putObject("currentUser", user);
         }
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager()
+                .getDefaultDisplay()
+                .getMetrics(metrics);
+        int height = metrics.heightPixels;
+        int width = metrics.widthPixels;
+        /////////////////////
+        ViewDialog dialog = new ViewDialog();
+        dialog.showDialog(getActivity(), PopupType.TROPHY);
+        KonfettiView confetti = view.findViewById(R.id.confetti);
+        confetti.build().addColors(Color.parseColor("#BCED09"), Color.parseColor("#2F52E0"), Color.parseColor("#C84C09"))
+                .setDirection(0.0, 359.0)
+                .setSpeed(3f, 7f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(20000L)
+                .addShapes(Shape.RECT, Shape.CIRCLE)
+                .addSizes(new nl.dionsegijn.konfetti.models.Size(10, 25))
+                .setPosition(width/2, height/2)
+                .burst(1000);
+                //.stream(300, 5000L);
+        ///////////////////////
+
         if(user.getUnderLevel() == 4){
+/*
             ViewDialog dialog = new ViewDialog();
             dialog.showDialog(getActivity(), PopupType.TROPHY);
+  */
             user.setTrophies(user.getTrophies()+1);
             user.setUnderLevel(1);
             user.setQuesGame(0);
@@ -156,7 +193,7 @@ public class MainFragment extends Fragment {
             View viewport = new View(getContext());
             viewport.setLayoutParams(imgParams);
 
-            ViewDialog dialog = new ViewDialog();
+            //ViewDialog dialog = new ViewDialog();
             //dialog.showDialog(getActivity(), PopupType.TROPHY);
 
 
@@ -180,6 +217,7 @@ public class MainFragment extends Fragment {
             } else {
                 textLayout.addView(levelText);
             }
+
             viewport = new View(getContext());
             viewport.setLayoutParams(imgParams);
 
@@ -310,5 +348,6 @@ public class MainFragment extends Fragment {
 
         return view;
     }
+
 
 }
