@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/shape_edit_text"
+        android:background="@drawable/shape_popup"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,9 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bold"
-            android:text="Your answer is incorrect"
+            android:text="Your answer is incorrect."
             android:textAlignment="center"
-            android:textColor="#FFF"
+            android:textColor="#010b19"
             android:textSize="18sp" />
 
         <TextView
@@ -46,9 +46,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bold"
-            android:text="Try again, dont give up"
+            android:text="Try again, dont give up!"
             android:textAlignment="center"
-            android:textColor="#FFF" />
+            android:textColor="#010b19"
+            android:textSize="16sp"/>
 
         <View
             android:layout_width="10dp"
