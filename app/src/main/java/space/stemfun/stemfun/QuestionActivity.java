@@ -88,6 +88,31 @@ public class QuestionActivity extends AppCompatActivity {
 
         //databaseReference.child("stemfun-54bfc").child("questions).child("junior").child("science").child("11");
         //Query myQuery = databaseReference.limitToFirst(100);
+
+
+        if(user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).getQuestionNum() == -1){
+
+            databaseReference.child("questions").child((user.getUserAge().getValue())).child(user.getCurrentField().toString().toLowerCase()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    System.out.println(dataSnapshot.getChildrenCount());
+                    user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setQuestionNum((int) (Math.random()* (int) dataSnapshot.getChildrenCount() + 1) - 1 );
+                    localDb.putObject("currentUser", user);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+        } else {
+
+
+        }
+
         databaseReference.child("questions").child(user.getUserAge().getValue()).child(user.getCurrentField().toString().toLowerCase()).child((user.getQuestionProgress().get(user.getCurrentField().getFieldValue()).toString())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -103,6 +128,7 @@ public class QuestionActivity extends AppCompatActivity {
                 choice3.setText(question.getChoice3());
                 choice4.setText(question.getChoice4());
 
+                user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setGameState(State.UNLOCKED);
                 System.out.println(question.getAnswer());
 
                 choice1.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +138,7 @@ public class QuestionActivity extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             //startActivity(intent);
                             user.setQuesGame(user.getQuesGame()+1);
+                            user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setQuestionState(State.UNLOCKED);
                             ViewDialog dialog = new ViewDialog();
                             localDb.putObject("currentUser", user);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
@@ -132,6 +159,7 @@ public class QuestionActivity extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             final ViewDialog dialog = new ViewDialog();
                             user.setQuesGame(user.getQuesGame()+1);
+                            user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setQuestionState(State.UNLOCKED);
                             localDb.putObject("currentUser", user);
                             View view = getLayoutInflater().inflate(R.layout.popup_medal, null);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
@@ -151,6 +179,7 @@ public class QuestionActivity extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             user.setQuesGame(user.getQuesGame()+1);
+                            user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setQuestionState(State.UNLOCKED);
                             localDb.putObject("currentUser", user);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {
@@ -170,6 +199,7 @@ public class QuestionActivity extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(), "Your answer is correct !!", Toast.LENGTH_LONG).show();
                             ViewDialog dialog = new ViewDialog();
                             user.setQuesGame(user.getQuesGame()+1);
+                            user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setQuestionState(State.UNLOCKED);
                             localDb.putObject("currentUser", user);
                             dialog.showDialog(QuestionActivity.this, PopupType.MEDAL);
                         } else {

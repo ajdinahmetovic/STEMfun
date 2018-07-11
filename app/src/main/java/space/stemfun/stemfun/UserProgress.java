@@ -11,7 +11,7 @@ public class UserProgress {
     private Field currentField = Field.EMPTY;
     private int level = 1;
     private int underLevel = 1;
-    private int quesGame = 1;
+    private int quesGame = 0;
 
 
     public int getQuesGame() {

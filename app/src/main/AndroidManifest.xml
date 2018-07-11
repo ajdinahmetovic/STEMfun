@@ -11,19 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AccountSelect">
+        <activity android:name=".AccountSelect"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpAcitvity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".RandomGenerator" />
+        <activity android:name=".SignUpAcitvity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignInActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RandomGenerator"
+            android:screenOrientation="portrait"/>
         <activity android:name=".TestingActivity" />
-        <activity android:name=".QuestionActivity" />
+        <activity android:name=".QuestionActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".GameActivity"></activity>
     </application>
 

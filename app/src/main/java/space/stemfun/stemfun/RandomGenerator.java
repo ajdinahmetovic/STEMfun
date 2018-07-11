@@ -237,6 +237,7 @@ public class RandomGenerator extends AppCompatActivity {
                                                                                 text.setText(fields[randoms[4]]);
 
                                                                                 localDb.putObject("currentField", fieldsE[randoms[4]-1]);
+                                                                                user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setField(fieldsE[randoms[4]-1]);
 
                                                                                 //if(fields[randoms[4]].toLowerCase().equals("technology")){
 

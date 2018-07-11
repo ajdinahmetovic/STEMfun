@@ -331,7 +331,7 @@ public class TinyDB {
         return newList;
     }
 
-/*
+
     public ArrayList<Object> getListObject(String key, Class<?> mClass){
    	Gson gson = new Gson();
 
@@ -345,7 +345,7 @@ public class TinyDB {
     	return objects;
     }
     
-*/
+
     
     public <T> T getObject(String key, Class<T> classOfT){
 
@@ -493,7 +493,7 @@ public class TinyDB {
     	Gson gson = new Gson();
     	putString(key, gson.toJson(obj));
     }
-  /*
+
     public void putListObject(String key, ArrayList<Object> objArray){
     	checkForNullKey(key);
     	Gson gson = new Gson();
@@ -503,7 +503,7 @@ public class TinyDB {
     	}
     	putListString(key, objStrings);
     }
-    */
+
     /**
      * Remove SharedPreferences item with 'key'
      * @param key SharedPreferences key

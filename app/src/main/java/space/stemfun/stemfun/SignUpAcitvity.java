@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class SignUpAcitvity extends AppCompatActivity {
 
     EditText name, username, password, confirmPassword;

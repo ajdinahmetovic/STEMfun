@@ -5,7 +5,7 @@
     android:id="@+id/question_cons"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/question_background"
+    android:background="@color/background"
     tools:context=".QuestionActivity">
 
     <LinearLayout
@@ -22,9 +22,9 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/choice1"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/shape_ques"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
                 android:paddingLeft="3dp"
@@ -40,9 +40,9 @@
 
             <Button
                 android:id="@+id/choice2"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/shape_ques"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
                 android:paddingLeft="3dp"
@@ -54,13 +54,13 @@
         </LinearLayout>
         <View
             android:layout_width="1dp"
-            android:layout_height="50dp"/>
+            android:layout_height="60dp"/>
         <Button
             android:id="@+id/question"
-            android:layout_width="200dp"
+            android:layout_width="230dp"
             android:layout_gravity="center"
-            android:layout_height="200dp"
-            android:background="@drawable/shape_ques"
+            android:layout_height="230dp"
+            android:background="@drawable/planet_question"
             android:clickable="false"
             android:fontFamily="@font/bold"
             android:paddingBottom="10dp"
@@ -72,7 +72,7 @@
 
         <View
             android:layout_width="1dp"
-            android:layout_height="50dp"/>
+            android:layout_height="60dp"/>
 
         <LinearLayout
             android:layout_gravity="center"
@@ -81,9 +81,9 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/choice3"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/shape_ques"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
                 android:paddingLeft="3dp"
@@ -98,9 +98,9 @@
 
             <Button
                 android:id="@+id/choice4"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/shape_ques"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
                 android:paddingLeft="3dp"

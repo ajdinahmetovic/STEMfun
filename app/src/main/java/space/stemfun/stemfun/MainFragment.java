@@ -67,15 +67,9 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         //isExpanded = false;
 
-
-
-
-
-
-
-
         localDb = new TinyDB(getContext());
         user = localDb.getObject("currentUser", User.class);
+
 
         dialogs[0] = view.findViewById(R.id.scineceProgress);
         dialogs[1] = view.findViewById(R.id.techProgress);
@@ -121,11 +115,11 @@ public class MainFragment extends Fragment {
 
         int random;
 
-        if(user.getQuesGame()%2==0 && user.getQuesGame()!=0){
-            //ViewDialog dialog = new ViewDialog();
-            //dialog.showDialog(getActivity(), PopupType.MEDAL);
+        if(user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).getGameState()==State.UNLOCKED && user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).getQuestionState()==State.UNLOCKED){
+
             user.setCurrentField(Field.EMPTY);
             user.setUnderLevel(user.getUnderLevel()+1);
+            user.unlockUnderLevel(user.getLevel(), user.getUnderLevel());
             user.setQuesGame(user.getQuesGame()+1);
             localDb.putObject("currentUser", user);
         }
@@ -137,34 +131,37 @@ public class MainFragment extends Fragment {
         int height = metrics.heightPixels;
         int width = metrics.widthPixels;
         /////////////////////
-        ViewDialog dialog = new ViewDialog();
-        dialog.showDialog(getActivity(), PopupType.TROPHY);
-        KonfettiView confetti = view.findViewById(R.id.confetti);
-        confetti.build().addColors(Color.parseColor("#BCED09"), Color.parseColor("#2F52E0"), Color.parseColor("#C84C09"))
-                .setDirection(0.0, 359.0)
-                .setSpeed(3f, 7f)
-                .setFadeOutEnabled(true)
-                .setTimeToLive(20000L)
-                .addShapes(Shape.RECT, Shape.CIRCLE)
-                .addSizes(new nl.dionsegijn.konfetti.models.Size(10, 25))
-                .setPosition(width/2, height/2)
-                .burst(1000);
+
                 //.stream(300, 5000L);
         ///////////////////////
 
-        if(user.getUnderLevel() == 4){
+        if(user.getUnderLevel() == 6){
 /*
             ViewDialog dialog = new ViewDialog();
             dialog.showDialog(getActivity(), PopupType.TROPHY);
   */
+            ViewDialog dialog = new ViewDialog();
+            dialog.showDialog(getActivity(), PopupType.TROPHY);
+            KonfettiView confetti = view.findViewById(R.id.confetti);
+            confetti.build().addColors(Color.parseColor("#BCED09"), Color.parseColor("#2F52E0"), Color.parseColor("#C84C09"))
+                    .setDirection(0.0, 359.0)
+                    .setSpeed(3f, 7f)
+                    .setFadeOutEnabled(true)
+                    .setTimeToLive(20000L)
+                    .addShapes(Shape.RECT, Shape.CIRCLE)
+                    .addSizes(new nl.dionsegijn.konfetti.models.Size(10, 25))
+                    .setPosition(width/2, height/2)
+                    .burst(1000);
+
             user.setTrophies(user.getTrophies()+1);
             user.setUnderLevel(1);
             user.setQuesGame(0);
             user.setLevel(user.getLevel()+1);
+            user.getLevels().get(user.getLevel()).setLevelState(State.UNLOCKED);
             localDb.putObject("currentUser",user);
         }
 
-        for(int i=0;i<5;i++){
+        for(int i=0;i<20;i++){
 
             random = (int) (Math.random() * 3);
             System.out.println("Rand"+random);
@@ -245,7 +242,7 @@ public class MainFragment extends Fragment {
             final LinearLayout dropGroup = new LinearLayout(getContext());
             dropGroup.setOrientation(LinearLayout.VERTICAL);
             dropGroup.setLayoutParams(dropDownParams);
-            for(int j = 0;j<3;j++) {
+            for(int j = 0;j<5;j++) {
                 isExpanded = false;
 
 
@@ -274,7 +271,7 @@ public class MainFragment extends Fragment {
                 game.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(b<user.getUnderLevel()){
+                        if(b>user.getUnderLevel()){
                             startActivity(gameActivity);
                         } else {
                             Toast.makeText(getContext(),"Locked",Toast.LENGTH_SHORT).show();
@@ -282,9 +279,25 @@ public class MainFragment extends Fragment {
                     }
                 });
                 dropDown.addView(game);
-
+/*
                 View distancer2 = new View(getContext());
                 distancer2.setLayoutParams(distancer2Params);
+*/
+
+                ImageView distancer2  = new ImageView(getContext());
+                distancer2.setLayoutParams(distancer2Params);
+
+                if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.ENGINEERING){
+                    distancer2.setImageResource(R.drawable.engineering);
+                } else if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.MATH){
+                    distancer2.setImageResource(R.drawable.math);
+                } else if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.TECHNOLOGY){
+                    distancer2.setImageResource(R.drawable.tech_icon);
+                } else if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.SCIENCE){
+                    distancer2.setImageResource(R.drawable.science);
+                }
+
+
                 dropDown.addView(distancer2);
 
                 final Intent questionClass = new Intent(getContext(), QuestionActivity.class);
@@ -310,12 +323,17 @@ public class MainFragment extends Fragment {
 
                 dropGroup.setVisibility(View.GONE);
 
+                if(i == user.getLevel()-1){
+
+                    dropGroup.setVisibility(View.VISIBLE);
+                    isExpanded = true;
+
+                }
+
                 card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-
-                        if(levelText.getText().toString().substring(levelText.getText().toString().length()-1, levelText.getText().toString().length()).equals(String.valueOf(user.getLevel()))){
+                        if(Integer.parseInt(levelText.getText().toString().substring(levelText.getText().toString().length()-1, levelText.getText().toString().length()))<=user.getLevel()){
 
                             if (isExpanded) {
                                 dropGroup.setVisibility(View.GONE);
@@ -334,10 +352,6 @@ public class MainFragment extends Fragment {
                // card.setRadius((float) 255);
 
             mainLayout.addView(card);
-
-
-
-
             //card.setForegroundGravity(Gravity.CENTER_HORIZONTAL);
         }
 

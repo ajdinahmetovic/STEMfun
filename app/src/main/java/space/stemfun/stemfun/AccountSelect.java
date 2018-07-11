@@ -37,6 +37,7 @@ public class AccountSelect extends AppCompatActivity {
 
         if(user != null){
             startActivity(random);
+            finish();
             //System.out.println(user.getDisplayName());
         }
         final Intent testIntetn = new Intent(this, MainTest.class);
