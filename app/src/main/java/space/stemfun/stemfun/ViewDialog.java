@@ -12,6 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.unity3d.player.UnityPlayer;
+
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 
@@ -106,7 +108,60 @@ public class ViewDialog {
                 }
             });
 
+        } else if(popupType == PopupType.SCIENCE_GAME){
+            dialog.setContentView(R.layout.popup_science_game);
+            Button back = dialog.findViewById(R.id.backButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(), GameActivity.class);
+                    //TinyDB localDb = new TinyDB(activity.getApplicationContext());
+                    activity.startActivity(intent);
+
+                }
+            });
+
+        } else if(popupType == PopupType.TECH_GAME){
+            dialog.setContentView(R.layout.popup_tech_game);
+            Button back = dialog.findViewById(R.id.backButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(), GameActivity.class);
+                    //TinyDB localDb = new TinyDB(activity.getApplicationContext());
+                    activity.startActivity(intent);
+
+                }
+            });
+
+        } else if(popupType == PopupType.ENGINEERING_GAME){
+            dialog.setContentView(R.layout.popup_engineering_game);
+            Button back = dialog.findViewById(R.id.backButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(), GameActivity.class);
+                    //TinyDB localDb = new TinyDB(activity.getApplicationContext());
+                    activity.startActivity(intent);
+
+                }
+            });
+
+        } else if(popupType == PopupType.MATH_GAME){
+            dialog.setContentView(R.layout.popup_math_game);
+            Button back = dialog.findViewById(R.id.backButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(), GameActivity.class);
+                    //TinyDB localDb = new TinyDB(activity.getApplicationContext());
+                    activity.startActivity(intent);
+
+                }
+            });
+
         }
+
 
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();

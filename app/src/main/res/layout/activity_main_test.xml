@@ -3,38 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:background="@drawable/splash_backg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main1"
     tools:context=".MainTest">
 
-    <android.support.design.widget.TextInputLayout
+
+    <ImageView
+        android:id="@+id/loading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_edit_text"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:passwordToggleEnabled="true">
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            />
-
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_loading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navigation">
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.design.widget.BottomNavigationView>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/loading"
+        app:layout_constraintEnd_toStartOf="@+id/loading"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/loading"
+        app:layout_constraintTop_toBottomOf="@+id/loading" />
+
 
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.LocaleList;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -150,7 +151,12 @@ public class SignUpAcitvity extends AppCompatActivity {
                                         if(task.isSuccessful()){
 
                                             localDb.putObject("currentUser", user);
+                                            localDb.putBoolean("tech_first", true);
+                                            localDb.putBoolean("science_first", true);
+                                            localDb.putBoolean("engineering_first", true);
+                                            localDb.putBoolean("math_first", true);
                                             startActivity(main);
+
                                         }
                                     }
                                 });

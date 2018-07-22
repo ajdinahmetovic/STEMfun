@@ -19,9 +19,9 @@
 
             <ImageView
                 android:id="@+id/userPhoto"
-                android:layout_width="127dp"
-                android:layout_height="115dp"
-                android:src="@drawable/student"
+                android:layout_width="157dp"
+                android:layout_height="175dp"
+                android:src="@drawable/kosmonaut"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"

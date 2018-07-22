@@ -62,6 +62,9 @@ public class User extends UserProgress {
         for(int i = 0;i<21;i++){
             levels.add(new Level());
         }
+
+        levels.get(1).setLevelState(State.UNLOCKED);
+
     }
 
     public UserAge getUserAge() {

@@ -4,5 +4,10 @@ public enum PopupType {
     TROPHY,
     MEDAL,
     WRONG_ANSWER,
-    EXPLANATION
+    EXPLANATION,
+
+    TECH_GAME,
+    SCIENCE_GAME,
+    ENGINEERING_GAME,
+    MATH_GAME
 }

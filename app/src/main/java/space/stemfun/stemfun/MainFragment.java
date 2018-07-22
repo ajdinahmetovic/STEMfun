@@ -46,7 +46,7 @@ public class MainFragment extends Fragment {
     ProgressBar dialogs [] = new ProgressBar[4];
     TextView progressText [] = new TextView[4];
 
-    private String [] colors = {"#91a6ff", "#ef626c", "#faff7f"};
+    private String [] colors = {"#91a6ff", "#faff7f", "#ef626c"};
 
    // private int[] backs = {R.drawable.shape_cardview_blue, R.drawable.shape_cardview_pink, R.drawable.shape_cardview_yellow};
 
@@ -84,17 +84,19 @@ public class MainFragment extends Fragment {
         List<Integer> list = user.getQuestionProgress();
 
         for(int i = 0;i<4;i++){
-            int num = (int) (Math.random() * 100 + 1);
+
             dialogs[i].setProgress(list.get(i));
             progressText[i].setText(list.get(i)+"%");
+
         }
 
 
         Typeface font  = Typeface.createFromAsset(getActivity().getAssets(), "bold.ttf");
-
+/*
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             font = getResources().getFont(R.font.bold);
         }
+        */
         mainLayout = view.findViewById(R.id.mainLinearLayout);
 
         final float scale = view.getContext().getResources().getDisplayMetrics().density;
@@ -104,26 +106,31 @@ public class MainFragment extends Fragment {
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams dropDownParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dropDownParams.topMargin =(int) (50*scale+0.5f);
-        LinearLayout.LayoutParams distancerParams = new LinearLayout.LayoutParams((int) (70*scale+0.5f), (int) (10*scale+0.5f));
+        LinearLayout.LayoutParams distancerParams = new LinearLayout.LayoutParams((int) (55*scale+0.5f), (int) (10*scale+0.5f));
         LinearLayout.LayoutParams distancer2Params = new LinearLayout.LayoutParams((int) (30*scale+0.5f), (int) (10*scale+0.5f));
 
         LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams((int) (40*scale+0.5f), (int) (40*scale+0.5f));
 
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams((int) (70*scale+0.5f), (int) (70*scale+0.5f));
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams((int) (90*scale+0.5f), (int) (70*scale+0.5f));
+        LinearLayout.LayoutParams button2Params = new LinearLayout.LayoutParams((int) (70*scale+0.5f), (int) (70*scale+0.5f));
 
-        ScrollView scrollView = new ScrollView(getContext());
+        LinearLayout.LayoutParams endpointParams = new LinearLayout.LayoutParams(2, (int) (50*scale+0.5f));
+
 
         int random;
 
+
         if(user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).getGameState()==State.UNLOCKED && user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).getQuestionState()==State.UNLOCKED){
 
+
+            System.out.println("IN UNDERLEVEL UNLOCK");
             user.setCurrentField(Field.EMPTY);
             user.setUnderLevel(user.getUnderLevel()+1);
             user.unlockUnderLevel(user.getLevel(), user.getUnderLevel());
             user.setQuesGame(user.getQuesGame()+1);
             localDb.putObject("currentUser", user);
         }
-
+        //ZA KONFETE
         DisplayMetrics metrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager()
                 .getDefaultDisplay()
@@ -134,6 +141,8 @@ public class MainFragment extends Fragment {
 
                 //.stream(300, 5000L);
         ///////////////////////
+
+        System.out.println(user.getLevel());
 
         if(user.getUnderLevel() == 6){
 /*
@@ -164,7 +173,7 @@ public class MainFragment extends Fragment {
         for(int i=0;i<20;i++){
 
             random = (int) (Math.random() * 3);
-            System.out.println("Rand"+random);
+            //System.out.println("Rand"+random);
             CardView card = new CardView(getContext());
             card.setRadius(50);
             card.setLayoutParams(cardParams);
@@ -208,7 +217,7 @@ public class MainFragment extends Fragment {
             //#010b19
             levelText.setLayoutParams(textParams);
 
-            if(i<user.getLevel()){
+            if(user.getLevels().get(i+1).getLevelState()==State.UNLOCKED){
                 card.addView(levelText);
                 //img.setImageResource(R.drawable.unlocked_icon);
             } else {
@@ -225,7 +234,7 @@ public class MainFragment extends Fragment {
             img.setLayoutParams(imgParams);
 
 
-            if(i<user.getLevel()){
+            if(user.getLevels().get(i+1).getLevelState()==State.UNLOCKED){
 
                 //img.setImageResource(R.drawable.unlocked_icon);
             } else {
@@ -248,7 +257,7 @@ public class MainFragment extends Fragment {
 
                 final LinearLayout dropDown = new LinearLayout(getContext());
 
-               if(j<user.getUnderLevel()){
+               if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getUnderState()==State.UNLOCKED){
                    dropDown.setBackgroundColor(Color.parseColor(colors[random]));
                } else {
                    dropDown.setBackgroundColor(Color.parseColor("#595959"));
@@ -268,10 +277,12 @@ public class MainFragment extends Fragment {
                 game.setLayoutParams(buttonParams);
                 game.setBackgroundResource(R.drawable.joystick);
                 final Intent gameActivity = new Intent(getContext(), GameActivity.class);
+                final int finalJ = j;
+                final int finalI = i;
                 game.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(b>user.getUnderLevel()){
+                        if(user.getLevels().get(finalI+1).getUnderLevels().get(finalJ+1).getUnderState()==State.UNLOCKED){
                             startActivity(gameActivity);
                         } else {
                             Toast.makeText(getContext(),"Locked",Toast.LENGTH_SHORT).show();
@@ -301,14 +312,17 @@ public class MainFragment extends Fragment {
                 dropDown.addView(distancer2);
 
                 final Intent questionClass = new Intent(getContext(), QuestionActivity.class);
-                Button question = new Button(getContext());
-                question.setLayoutParams(buttonParams);
-                question.setBackgroundResource(R.drawable.questionmark);
+                final Button question = new Button(getContext());
+                question.setLayoutParams(button2Params);
+                question.setBackgroundResource(R.drawable.question);
                 question.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(b<user.getUnderLevel()){
+                        if(user.getLevels().get(finalI+1).getUnderLevels().get(finalJ+1).getUnderState()==State.UNLOCKED){
+                            questionClass.putExtra("level", finalI+1);
+                            questionClass.putExtra("underLevel", finalJ+1);
                             startActivity(questionClass);
+
                         } else {
                             Toast.makeText(getContext(),"Locked",Toast.LENGTH_SHORT).show();
                         }
@@ -319,9 +333,19 @@ public class MainFragment extends Fragment {
 
                 dropGroup.addView(dropDown);
                 }
+
+            View endpoint = new View(getContext());
+            endpoint.setLayoutParams(endpointParams);
+
+            //card.addView(endpoint);
+                dropGroup.addView(endpoint);
                 card.addView(dropGroup);
 
                 dropGroup.setVisibility(View.GONE);
+
+
+
+
 
                 if(i == user.getLevel()-1){
 

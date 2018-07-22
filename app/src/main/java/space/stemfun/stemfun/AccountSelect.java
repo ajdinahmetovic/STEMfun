@@ -1,7 +1,10 @@
 package space.stemfun.stemfun;
 
 import android.app.Notification;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,9 +37,18 @@ public class AccountSelect extends AppCompatActivity {
         final FirebaseUser user = mAuth.getCurrentUser();
         //System.out.println(user.getDisplayName());
         final Intent random = new Intent(this, MainActivity.class);
+        final Intent aaa = new Intent(this, MainTest.class);
+
+
+
+
+
+
+        //startActivity(aaa);
 
         if(user != null){
-            startActivity(random);
+            //startActivity(random);
+            startActivity(aaa);
             finish();
             //System.out.println(user.getDisplayName());
         }
@@ -64,4 +76,5 @@ public class AccountSelect extends AppCompatActivity {
         });
 
     }
+
 }

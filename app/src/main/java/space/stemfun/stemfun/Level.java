@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Level {
 
-    ArrayList<UnderLevel> underLevels = new ArrayList<>();
-    private State levelState = State.LOCKED;
+    private ArrayList<UnderLevel> underLevels = new ArrayList<>();
+    private State levelState ;
 
 
 
@@ -19,9 +19,13 @@ public class Level {
 
 
     public Level() {
+        levelState = State.LOCKED;
         for(int i = 0;i<7;i++){
             underLevels.add(new UnderLevel());
         }
+
+        underLevels.get(1).setUnderState(State.UNLOCKED);
+
     }
 
     public ArrayList<UnderLevel> getUnderLevels() {

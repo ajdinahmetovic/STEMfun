@@ -3,11 +3,34 @@ package space.stemfun.stemfun;
 public class UnderLevel {
 
 
-    private Field field = Field.EMPTY;
-    private int questionNum = -1;
-    private State questionState = State.LOCKED;
-    private State gameState = State.LOCKED;
-    private State underState = State.LOCKED;
+    private Field field ;
+    private int questionNum;
+
+
+    private Question questionData;
+    private State questionState ;
+    private State gameState ;
+    private State underState ;
+
+    UnderLevel (){
+
+          field = Field.EMPTY;
+          questionNum = -1;
+          questionState = State.LOCKED;
+          gameState = State.LOCKED;
+          underState = State.LOCKED;
+
+    }
+
+
+
+    public Question getQuestionData() {
+        return questionData;
+    }
+
+    public void setQuestionData(Question questionData) {
+        this.questionData = questionData;
+    }
 
     public int getQuestionNum() {
         return questionNum;
