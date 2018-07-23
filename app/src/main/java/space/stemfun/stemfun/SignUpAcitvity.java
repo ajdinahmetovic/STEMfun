@@ -113,6 +113,7 @@ public class SignUpAcitvity extends AppCompatActivity {
                         user.setAccountType(UserType.TEACHER);
                     } else {
                         if(student.isChecked()){
+                            teacher.setClickable(true);
                             user.setUserAge(UserAge.junior);
                         } else {
                             user.setUserAge(UserAge.senior);

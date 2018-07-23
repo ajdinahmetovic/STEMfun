@@ -25,7 +25,7 @@ dependencies {
     //implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'nl.dionsegijn:konfetti:1.1.2'
     //implementation 'nl.dionsegijn:konfetti:1.1.2-rc1'
-    implementation project(":stem_gamev19")
+    implementation project(":stem_gamev20")
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.android.support:design:27.1.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])

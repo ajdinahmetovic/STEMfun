@@ -87,9 +87,9 @@ public class MainFragment extends Fragment {
 
             dialogs[i].setProgress(list.get(i));
             progressText[i].setText(list.get(i)+"%");
+            progressText[i].setTextColor(getResources().getColor(R.color.colorPrimary));
 
         }
-
 
         Typeface font  = Typeface.createFromAsset(getActivity().getAssets(), "bold.ttf");
 /*
