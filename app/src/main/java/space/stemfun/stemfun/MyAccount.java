@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -96,115 +97,53 @@ public class MyAccount extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dialog.setMessage("Processing...");
-                dialog.show();
+
+                final ProgressDialog progressDialog = new ProgressDialog(getContext());
+                progressDialog.setTitle("Processing...");
+                progressDialog.show();
+
+                user.setUsername(username.getText().toString());
+                user.setName(name.getText().toString());
+                user.setPassword(currentPassword.getText().toString());
+                user.setEmail(username.getText().toString()+"@stemfun.space");
 
 
-                System.out.println("Click");
-
-                newUser = new User();
-
-                newUser.setUsername(username.getText().toString());
-                newUser.setTrophies(user.getTrophies());
-                newUser.setPassword(currentPassword.getText().toString());
-                newUser.setEmail(newUser.getUsername()+"@stemfun.space");
-                newUser.setAccountType(user.getAccountType());
-                newUser.setName(name.getText().toString());
+                if(currentPassword.getText().toString().equals(confirmPassword.getText().toString())){
 
 
-                String jUser = new Gson().toJson(user);
-                String jnewUser = new Gson().toJson(newUser);
+                    databaseReference.child("users").child(firebaseUser.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                if(!jUser.equals(jnewUser)){
-                    System.out.println("CHANGED");
-                    try {
-                        if(!confirmPassword.getText().toString().equals(user.getPassword())){
-                            dialog.dismiss();
-                            throw new PasswordsNotSame();
-                        }
+                            if(task.isSuccessful()){
 
-                        if(!newUser.getName().equals(user.getName())){
-                            databaseReference.child("users").child(firebaseUser.getUid()).child("name").setValue(newUser.getName()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        System.out.println("Ok1");
-                                    }
+                                Toast.makeText(getContext(), "Changes saved", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                localDb.putObject("currentUser", user);
+                            } else if(!task.isSuccessful()){
+
+                                progressDialog.dismiss();
+                                try {
+                                   throw  task.getException();
+                                } catch (FirebaseAuthUserCollisionException e){
+                                    username.requestFocus();
+                                    username.setError("Username taken");
                                 }
-                            });
-                        }
-                        if(!newUser.getUsername().equals(user.getUsername())){
-                            firebaseUser.updateEmail(newUser.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        System.out.println("Ok2");
-                                        databaseReference.child("users").child(firebaseUser.getUid()).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful()){
-                                                    System.out.println("Ok2InRef");
-                                                    dialog.dismiss();
-                                                }
-                                            }
-                                        });
-
-                                    } else {
-                                        try{
-                                            dialog.dismiss();
-                                            throw task.getException();
-                                        } catch (FirebaseAuthUserCollisionException e){
-                                            username.setError("Username taken");
-                                            username.requestFocus();
-                                        } catch (Exception e){
-
-                                        }
-                                    }
+                                catch (Exception e){
+                                    e.printStackTrace();
                                 }
-                            });
-                        }
-                        if(!newUser.getPassword().equals(user.getPassword())){
-                            firebaseUser.updatePassword(newUser.getPassword()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        System.out.println("Ok3");
+                            }
 
-                                        databaseReference.child("users").child(firebaseUser.getUid()).child("password").setValue(newUser.getPassword()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful()){
-                                                    System.out.println("Ok3InRef");
-                                                    dialog.dismiss();
-                                                }
-                                            }
-                                        });
-                                    } else {
-                                        try{
-                                            dialog.dismiss();
-                                            throw task.getException();
-                                        } catch (FirebaseAuthWeakPasswordException e){
-                                            currentPassword.requestFocus();
-                                            currentPassword.setError("Weak password");
-                                        } catch (Exception e) {
-                                        }
-                                    }
-                                }
-                            });
                         }
+                    });
 
-                        user = newUser;
-                        localDb.putObject("currentUser", user);
-                        dialog.dismiss();
-                    } catch (PasswordsNotSame e){
-                        confirmPassword.setError("Please confirm your password");
-                        confirmPassword.requestFocus();
-                    }
 
                 } else {
-                    dialog.dismiss();
-                    System.out.println("No changes");
+                    currentPassword.requestFocus();
+                    currentPassword.setError("Passwords not same");
+                    progressDialog.dismiss();
                 }
+
 
             }
         });

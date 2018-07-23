@@ -51,8 +51,10 @@ public class GameActivity extends UnityPlayerActivity {
 
                 intent.putExtra("gameName", "scienceScene");
 
+                localDb.putBoolean("science_first", false);
+
                 if(localDb.getBoolean("science_first")){
-                    localDb.putBoolean("science_first", false);
+
                     ViewDialog dialog = new ViewDialog();
                     dialog.showDialog(GameActivity.this, PopupType.SCIENCE_GAME);
                 } else {
@@ -62,6 +64,7 @@ public class GameActivity extends UnityPlayerActivity {
 
             }if(user.getCurrentField().getFieldValue() == 1){
                 intent.putExtra("gameName", "techScene");
+                localDb.putBoolean("isTech", true);
 
                 if(localDb.getBoolean("tech_first")){
                     localDb.putBoolean("tech_first", false);
@@ -72,6 +75,7 @@ public class GameActivity extends UnityPlayerActivity {
                 }
             }if(user.getCurrentField().getFieldValue() == 2){
                 intent.putExtra("gameName", "engineeringScene");
+                localDb.putBoolean("isTech", false);
 
                 if(localDb.getBoolean("engineering_first")){
                     localDb.putBoolean("engineering_first", false);
@@ -82,6 +86,7 @@ public class GameActivity extends UnityPlayerActivity {
                 }
             }if(user.getCurrentField().getFieldValue() == 3){
                 intent.putExtra("gameName", "mathScene");
+                localDb.putBoolean("isTech", false);
 
                 if(localDb.getBoolean("math_first")){
                     localDb.putBoolean("math_first", false);
@@ -123,7 +128,15 @@ public class GameActivity extends UnityPlayerActivity {
         User user = localDb.getObject("currentUser", User.class);
         user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setGameState(State.UNLOCKED);
         ViewDialog dialog = new ViewDialog();
-        dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL);
+
+        if(user.getCurrentField().getFieldValue() == 2){
+            dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL_LANDSCAPE);
+
+
+        } else {
+
+            dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL);
+        }
         localDb.putObject("currentUser", user);
 
     }

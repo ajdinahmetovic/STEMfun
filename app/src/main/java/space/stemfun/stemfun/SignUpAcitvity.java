@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -98,6 +99,28 @@ public class SignUpAcitvity extends AppCompatActivity {
 
 
 
+
+
+        teacher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(student.isChecked()){
+
+                    teacher.setChecked(true);
+
+                } else {
+
+                    teacher.setChecked(false);
+                    Toast.makeText(getApplicationContext(), "Teachers are coming soon!", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +136,7 @@ public class SignUpAcitvity extends AppCompatActivity {
                         user.setAccountType(UserType.TEACHER);
                     } else {
                         if(student.isChecked()){
-                            teacher.setClickable(true);
+                            //teacher.setClickable(true);
                             user.setUserAge(UserAge.junior);
                         } else {
                             user.setUserAge(UserAge.senior);

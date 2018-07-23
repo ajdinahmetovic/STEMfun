@@ -160,6 +160,28 @@ public class ViewDialog {
                 }
             });
 
+        } else if(popupType == PopupType.MEDAL_LANDSCAPE){
+            dialog.setContentView(R.layout.popup_metal_landscape);
+            Button collect = dialog.findViewById(R.id.collectButton);
+
+            KonfettiView confetti = dialog.findViewById(R.id.confetti);
+
+            collect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //KonfettiView confetti = dialog.findViewById(R.id.confetti);
+
+                    TinyDB localDb = new TinyDB(activity.getApplicationContext());
+                    User user = localDb.getObject("currentUser", User.class);
+                    user.setMedals(user.getMedals()+1);
+                    localDb.putObject("currentUser", user);
+                    Intent intent = new Intent(activity.getApplicationContext(),MainActivity.class);
+                    activity.startActivity(intent);
+
+                }
+            });
+
         }
 
 
