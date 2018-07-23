@@ -182,6 +182,50 @@ public class ViewDialog {
                 }
             });
 
+        } else if(popupType == PopupType.GAME_FAILED){
+
+            dialog.setContentView(R.layout.popup_game_failed);
+            Button back = dialog.findViewById(R.id.backButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(),MainActivity.class);
+                    activity.startActivity(intent);
+                }
+            });
+
+            Button expalantion = dialog.findViewById(R.id.explanationButton);
+
+            TinyDB localDb = new TinyDB(activity.getApplicationContext());
+            final User user = localDb.getObject("currentUser", User.class);
+
+            expalantion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ViewDialog dialog1 = new ViewDialog();
+                    dialog1.setExplanation(explanation);
+                    System.out.println(explanation);
+
+                    if(user.getCurrentField().getFieldValue() == 0){
+                        ViewDialog dialog = new ViewDialog();
+                        dialog.showDialog(activity, PopupType.SCIENCE_GAME);
+                    } else if(user.getCurrentField().getFieldValue() == 1){
+                        ViewDialog dialog = new ViewDialog();
+                        dialog.showDialog(activity, PopupType.TECH_GAME);
+                    } else if(user.getCurrentField().getFieldValue() == 1){
+                        ViewDialog dialog = new ViewDialog();
+                        dialog.showDialog(activity, PopupType.ENGINEERING_GAME);
+                    } else if(user.getCurrentField().getFieldValue() == 1){
+                        ViewDialog dialog = new ViewDialog();
+                        dialog.showDialog(activity, PopupType.MATH_GAME);
+                    }
+
+
+                    dialog1.showDialog(activity, PopupType.EXPLANATION);
+                }
+            });
+
+
         }
 
 
