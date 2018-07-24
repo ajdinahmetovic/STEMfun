@@ -69,7 +69,7 @@
                 android:background="@drawable/shape_button_popup"
                 android:fontFamily="@font/bold"
                 android:padding="10dp"
-                android:text="Explanation"
+                android:text="How to play"
                 android:textColor="#010b19"
                 android:textSize="30sp" />
 

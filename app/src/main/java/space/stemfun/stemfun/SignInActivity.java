@@ -45,7 +45,8 @@ public class SignInActivity extends AppCompatActivity {
 
         user = new User();
 
-        reference = FirebaseDatabase.getInstance().getReference().child("users");
+        reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("stemfun-54bfc");
 
         //setContentView(R.layout.activity_account_select);
         View decorView = getWindow().getDecorView();
@@ -86,12 +87,23 @@ public class SignInActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
                                 firebaseUser = mAuth.getCurrentUser();
-                                reference.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                                System.out.println("UUIID" + firebaseUser.getUid());
+
+
+
+                                reference.child("users").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         user = dataSnapshot.getValue(User.class);
-                                        TinyDB localdb = new TinyDB(getApplicationContext());
-                                        localdb.putObject("currentUser", user);
+
+
+                                        TinyDB localDb = new TinyDB(getApplicationContext());
+                                        localDb.putObject("currentUser", user);
+
+                                        Toast.makeText(getApplicationContext(), "LoggedIn", Toast.LENGTH_SHORT).show();
+                                        startActivity(intent);
+                                        finish();
+                                        dialog.dismiss();
                                     }
 
                                     @Override
@@ -99,11 +111,6 @@ public class SignInActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-                                Toast.makeText(getApplicationContext(), "LoggedIn", Toast.LENGTH_SHORT).show();
-                                startActivity(intent);
-                                finish();
-                                dialog.dismiss();
                             } else if (!task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();

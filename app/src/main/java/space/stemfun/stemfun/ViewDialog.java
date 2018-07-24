@@ -215,12 +215,10 @@ public class ViewDialog {
                     } else if(user.getCurrentField().getFieldValue() == 1){
                         ViewDialog dialog = new ViewDialog();
                         dialog.showDialog(activity, PopupType.ENGINEERING_GAME);
-                    } else if(user.getCurrentField().getFieldValue() == 1){
+                    } else if(user.getCurrentField().getFieldValue() == 1) {
                         ViewDialog dialog = new ViewDialog();
                         dialog.showDialog(activity, PopupType.MATH_GAME);
                     }
-
-
                     dialog1.showDialog(activity, PopupType.EXPLANATION);
                 }
             });

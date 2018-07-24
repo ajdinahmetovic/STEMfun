@@ -124,20 +124,23 @@ public class GameActivity extends UnityPlayerActivity {
 
         startActivity(i);
 */
-        TinyDB localDb = new TinyDB(UnityPlayer.currentActivity.getApplicationContext());
-        User user = localDb.getObject("currentUser", User.class);
-        user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setGameState(State.UNLOCKED);
-        ViewDialog dialog = new ViewDialog();
+        if(val.equals("true")) {
+            TinyDB localDb = new TinyDB(UnityPlayer.currentActivity.getApplicationContext());
+            User user = localDb.getObject("currentUser", User.class);
+            user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setGameState(State.UNLOCKED);
+            ViewDialog dialog = new ViewDialog();
 
-        if(user.getCurrentField().getFieldValue() == 2){
-            dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL_LANDSCAPE);
+            if (user.getCurrentField().getFieldValue() == 2) {
+                dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL_LANDSCAPE);
 
+            } else {
 
-        } else {
-
-            dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL);
+                dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL);
+            }
+            localDb.putObject("currentUser", user);
+        } else if(val.equals("false")) {
+            ViewDialog dialog = new ViewDialog();
+            dialog.showDialog(UnityPlayer.currentActivity, PopupType.GAME_FAILED);
         }
-        localDb.putObject("currentUser", user);
-
     }
 }
