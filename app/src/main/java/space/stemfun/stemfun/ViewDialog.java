@@ -3,6 +3,7 @@ package space.stemfun.stemfun;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.util.Size;
 import android.view.View;
@@ -196,7 +197,7 @@ public class ViewDialog {
 
             Button expalantion = dialog.findViewById(R.id.explanationButton);
 
-            TinyDB localDb = new TinyDB(activity.getApplicationContext());
+            final TinyDB localDb = new TinyDB(activity.getApplicationContext());
             final User user = localDb.getObject("currentUser", User.class);
 
             expalantion.setOnClickListener(new View.OnClickListener() {
@@ -206,20 +207,70 @@ public class ViewDialog {
                     dialog1.setExplanation(explanation);
                     System.out.println(explanation);
 
+                    Intent intent = new Intent(activity.getApplicationContext(), GameActivity.class);
+
                     if(user.getCurrentField().getFieldValue() == 0){
-                        ViewDialog dialog = new ViewDialog();
-                        dialog.showDialog(activity, PopupType.SCIENCE_GAME);
+                        localDb.putBoolean("science_first", true);
+
+
                     } else if(user.getCurrentField().getFieldValue() == 1){
-                        ViewDialog dialog = new ViewDialog();
-                        dialog.showDialog(activity, PopupType.TECH_GAME);
-                    } else if(user.getCurrentField().getFieldValue() == 1){
-                        ViewDialog dialog = new ViewDialog();
-                        dialog.showDialog(activity, PopupType.ENGINEERING_GAME);
-                    } else if(user.getCurrentField().getFieldValue() == 1) {
+
+                        localDb.putBoolean("tech_first", true);
+                    } else if(user.getCurrentField().getFieldValue() == 2){
+                        localDb.putBoolean("engineering_first", true);
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+                    } else if(user.getCurrentField().getFieldValue() == 3) {
                         ViewDialog dialog = new ViewDialog();
                         dialog.showDialog(activity, PopupType.MATH_GAME);
                     }
-                    dialog1.showDialog(activity, PopupType.EXPLANATION);
+                    //dialog1.showDialog(activity, PopupType.EXPLANATION);
+                    activity.startActivity(intent);
+                }
+            });
+
+
+        } else if(popupType == PopupType.GAME_FAILED_LANDSCAPE){
+
+            dialog.setContentView(R.layout.popup_game_failed_landscape);
+            Button back = dialog.findViewById(R.id.backButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity.getApplicationContext(),MainActivity.class);
+                    activity.startActivity(intent);
+                }
+            });
+
+            Button expalantion = dialog.findViewById(R.id.explanationButton);
+
+            final TinyDB localDb = new TinyDB(activity.getApplicationContext());
+            final User user = localDb.getObject("currentUser", User.class);
+
+            expalantion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ViewDialog dialog1 = new ViewDialog();
+                    dialog1.setExplanation(explanation);
+                    System.out.println(explanation);
+
+                    Intent intent = new Intent(activity.getApplicationContext(), GameActivity.class);
+
+                    if(user.getCurrentField().getFieldValue() == 0){
+                        localDb.putBoolean("science_first", true);
+
+                    } else if(user.getCurrentField().getFieldValue() == 1){
+
+                        localDb.putBoolean("tech_first", true);
+                    } else if(user.getCurrentField().getFieldValue() == 2){
+                        localDb.putBoolean("engineering_first", true);
+
+                    } else if(user.getCurrentField().getFieldValue() == 3) {
+                        ViewDialog dialog = new ViewDialog();
+                        dialog.showDialog(activity, PopupType.MATH_GAME);
+                    }
+                    //dialog1.showDialog(activity, PopupType.EXPLANATION);
+                    activity.startActivity(intent);
                 }
             });
 

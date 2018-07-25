@@ -86,7 +86,7 @@ public class MainFragment extends Fragment {
         for(int i = 0;i<4;i++){
 
             dialogs[i].setProgress(list.get(i));
-            progressText[i].setText(list.get(i)+"%");
+            progressText[i].setText(" ");
             progressText[i].setTextColor(getResources().getColor(R.color.colorPrimary));
 
         }
@@ -283,6 +283,9 @@ public class MainFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         if(user.getLevels().get(finalI+1).getUnderLevels().get(finalJ+1).getUnderState()==State.UNLOCKED){
+                            localDb.putInt("clickedLevel", finalI+1);
+                            localDb.putInt("clickedUnderLevel", finalJ+1);
+
                             startActivity(gameActivity);
                         } else {
                             Toast.makeText(getContext(),"Locked",Toast.LENGTH_SHORT).show();
@@ -351,7 +354,6 @@ public class MainFragment extends Fragment {
 
                     dropGroup.setVisibility(View.VISIBLE);
                     isExpanded = true;
-
                 }
 
                 card.setOnClickListener(new View.OnClickListener() {

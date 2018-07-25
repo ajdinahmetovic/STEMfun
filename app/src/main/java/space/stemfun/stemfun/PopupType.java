@@ -12,5 +12,6 @@ public enum PopupType {
     MATH_GAME,
     MEDAL_LANDSCAPE,
 
-    GAME_FAILED
+    GAME_FAILED,
+    GAME_FAILED_LANDSCAPE
 }

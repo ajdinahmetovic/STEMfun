@@ -1,6 +1,8 @@
 package space.stemfun.stemfun;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.stem.spacev1.UnityPlayerActivity;
@@ -15,6 +17,7 @@ public class GameActivity extends UnityPlayerActivity {
     Intent i;
     String passed;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,14 +25,17 @@ public class GameActivity extends UnityPlayerActivity {
 
         localDb = new TinyDB(this);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Intent s = getIntent();
         if(s.hasExtra("isPassed")){
             isPassed(s.getStringExtra("isPassed"));
         }
 
+
         user = localDb.getObject("currentUser", User.class);
         try {
-            if (user.getCurrentField().getFieldValue() == -1) {
+            if (user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == -1) {
                 Intent intent = new Intent(this, RandomGenerator.class);
                 intent.putExtra("whatIs", true);
                 startActivity(intent);
@@ -47,7 +53,7 @@ public class GameActivity extends UnityPlayerActivity {
             intent.putExtra("level", user.getLevel());
             intent.putExtra("underLevel", user.getUnderLevel());
 
-            if(user.getCurrentField().getFieldValue() == 0){
+            if(user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == 0){
 
                 intent.putExtra("gameName", "scienceScene");
 
@@ -62,7 +68,7 @@ public class GameActivity extends UnityPlayerActivity {
                 }
 
 
-            }if(user.getCurrentField().getFieldValue() == 1){
+            }if(user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == 1){
                 intent.putExtra("gameName", "techScene");
                 localDb.putBoolean("isTech", true);
 
@@ -73,7 +79,7 @@ public class GameActivity extends UnityPlayerActivity {
                 } else {
                     startActivity(intent);
                 }
-            }if(user.getCurrentField().getFieldValue() == 2){
+            }if(user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == 2){
                 intent.putExtra("gameName", "engineeringScene");
                 localDb.putBoolean("isTech", false);
 
@@ -84,7 +90,7 @@ public class GameActivity extends UnityPlayerActivity {
                 } else {
                     startActivity(intent);
                 }
-            }if(user.getCurrentField().getFieldValue() == 3){
+            }if(user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == 3){
                 intent.putExtra("gameName", "mathScene");
                 localDb.putBoolean("isTech", false);
 
@@ -124,13 +130,14 @@ public class GameActivity extends UnityPlayerActivity {
 
         startActivity(i);
 */
+        TinyDB localDb = new TinyDB(UnityPlayer.currentActivity.getApplicationContext());
+        User user = localDb.getObject("currentUser", User.class);
         if(val.equals("true")) {
-            TinyDB localDb = new TinyDB(UnityPlayer.currentActivity.getApplicationContext());
-            User user = localDb.getObject("currentUser", User.class);
+
             user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setGameState(State.UNLOCKED);
             ViewDialog dialog = new ViewDialog();
 
-            if (user.getCurrentField().getFieldValue() == 2) {
+            if (user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == 2) {
                 dialog.showDialog(UnityPlayer.currentActivity, PopupType.MEDAL_LANDSCAPE);
 
             } else {
@@ -139,8 +146,17 @@ public class GameActivity extends UnityPlayerActivity {
             }
             localDb.putObject("currentUser", user);
         } else if(val.equals("false")) {
+
             ViewDialog dialog = new ViewDialog();
-            dialog.showDialog(UnityPlayer.currentActivity, PopupType.GAME_FAILED);
+
+//            if (user.getCurrentField().getFieldValue() == 2) {
+                dialog.showDialog(UnityPlayer.currentActivity, PopupType.GAME_FAILED_LANDSCAPE);
+
+  //          } else {
+
+    //            dialog.showDialog(UnityPlayer.currentActivity, PopupType.GAME_FAILED);
+      //      }
+
         }
     }
 }

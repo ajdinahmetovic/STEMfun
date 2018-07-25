@@ -22,8 +22,8 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/choice1"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
@@ -40,8 +40,8 @@
 
             <Button
                 android:id="@+id/choice2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
@@ -54,12 +54,13 @@
         </LinearLayout>
         <View
             android:layout_width="1dp"
-            android:layout_height="60dp"/>
+            android:layout_height="40dp"/>
+
         <Button
             android:id="@+id/question"
             android:layout_width="230dp"
-            android:layout_gravity="center"
             android:layout_height="230dp"
+            android:layout_gravity="center"
             android:background="@drawable/planet_question"
             android:clickable="false"
             android:fontFamily="@font/bold"
@@ -67,57 +68,50 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:textSize="25sp"
-            />
+            android:textSize="25sp" />
 
         <View
             android:layout_width="1dp"
-            android:layout_height="60dp"/>
+            android:layout_height="40dp"/>
 
         <LinearLayout
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/choice3"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
                 android:paddingTop="3dp"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
 
             <View
                 android:layout_width="50dp"
-                android:layout_height="1dp"/>
+                android:layout_height="1dp" />
 
             <Button
                 android:id="@+id/choice4"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:background="@drawable/planet_answer"
                 android:fontFamily="@font/bold"
                 android:paddingBottom="3dp"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
                 android:paddingTop="3dp"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
 
     </LinearLayout>
-
-
-
-
-
 
 
 </android.support.constraint.ConstraintLayout>
