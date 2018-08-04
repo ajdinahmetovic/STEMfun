@@ -21,9 +21,9 @@
         app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:layout_gravity="center"
-            android:layout_width="260dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="How to play TechGame"
+            android:text="How to play"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
             android:textSize="26dp"/>
@@ -56,11 +56,13 @@
             android:orientation="horizontal">
 
                 <LinearLayout
+
                     android:layout_marginRight="15dp"
                     android:layout_width="wrap_content"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
                     <ImageView
+                        android:layout_marginLeft="7dp"
                         android:layout_gravity="left"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
@@ -73,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Left"
+                        android:text="Left or down"
 
                         android:fontFamily="@font/bold"
                         android:textColor="#010b19"
@@ -98,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Right"
+                        android:text="Right or up"
 
                         android:fontFamily="@font/bold"
                         android:textColor="#010b19"

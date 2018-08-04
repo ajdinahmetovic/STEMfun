@@ -2,6 +2,7 @@ package space.stemfun.stemfun;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,6 +43,8 @@ public class MyAccount extends Fragment {
     User user;
     TinyDB localDb;
 
+    Button logOut;
+
     User newUser;
 
     public MyAccount() {
@@ -70,6 +73,7 @@ public class MyAccount extends Fragment {
         apply = view.findViewById(R.id.apply);
         trophies = view.findViewById(R.id.trophies);
         medals = view.findViewById(R.id.medals);
+        logOut = view.findViewById(R.id.logout);
 
         localDb = new TinyDB(getContext());
 
@@ -90,6 +94,18 @@ public class MyAccount extends Fragment {
         currentPassword.setText(user.getPassword());
         trophies.setText(String.valueOf(user.getTrophies()));
         medals.setText(String.valueOf(user.getMedals()));
+
+
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), AccountSelect.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         apply.setOnClickListener(new View.OnClickListener() {

@@ -22,10 +22,9 @@
         app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:layout_gravity="center"
-            android:layout_width="260dp"
-            android:layout_height="80dp"
-            android:text="How to play EngineeringGame"
-            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="How to play"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
             android:textSize="26dp"/>

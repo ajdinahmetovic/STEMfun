@@ -9,6 +9,7 @@ import android.util.Size;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +27,10 @@ public class ViewDialog {
 
     public void showDialog (final Activity activity, PopupType popupType){
 
+
+
         final Dialog dialog = new Dialog(activity);
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
 

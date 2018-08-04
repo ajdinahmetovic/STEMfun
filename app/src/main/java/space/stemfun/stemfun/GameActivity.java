@@ -50,8 +50,8 @@ public class GameActivity extends UnityPlayerActivity {
 
             Intent intent = new Intent(this, UnityPlayerActivity.class);
 
-            intent.putExtra("level", user.getLevel());
-            intent.putExtra("underLevel", user.getUnderLevel());
+            intent.putExtra("level", localDb.getInt("clickedLevel"));
+            intent.putExtra("underLevel", localDb.getInt("clickedUnderLevel"));
 
             if(user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == 0){
 

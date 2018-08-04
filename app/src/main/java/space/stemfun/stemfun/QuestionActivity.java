@@ -121,7 +121,9 @@ public class QuestionActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    question = dataSnapshot.child(String.valueOf((int) (Math.random() * dataSnapshot.getChildrenCount() + 1) -1 )).getValue(Question.class);;
+                    int val = (int) (Math.random() * dataSnapshot.getChildrenCount() + 1) -1;
+                    user.getLevels().get(level).getUnderLevels().get(underlevel).setQuestionNum(val);
+                    question = dataSnapshot.child(String.valueOf(val)).getValue(Question.class);
 
                     user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setQuestionData(question);
 

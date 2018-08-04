@@ -38,9 +38,10 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
+                    android:id="@+id/scienceImg"
                     android:layout_width="77dp"
                     android:layout_height="58dp"
-                    android:background="@drawable/science"
+
                     app:layout_constraintBottom_toTopOf="@+id/scineceProgress"
                     app:layout_constraintEnd_toStartOf="@+id/scineceProgress"
                     app:layout_constraintHorizontal_bias="0.57"
@@ -86,9 +87,10 @@
                     app:layout_constraintVertical_bias="0.026" />
 
                 <ImageView
+                    android:id="@+id/techImg"
                     android:layout_width="79dp"
                     android:layout_height="59dp"
-                    android:background="@drawable/tech_icon"
+
                     app:layout_constraintBottom_toTopOf="@+id/techProgress"
                     app:layout_constraintEnd_toStartOf="@+id/techProgress"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -131,9 +133,10 @@
                     app:layout_constraintVertical_bias="0.026" />
 
                 <ImageView
+                    android:id="@+id/engineeringImg"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/engineering"
+
                     app:layout_constraintBottom_toTopOf="@+id/engineeringProgress"
                     app:layout_constraintEnd_toStartOf="@+id/engineeringProgress"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -176,9 +179,10 @@
                     app:layout_constraintVertical_bias="0.026" />
 
                 <ImageView
-                    android:layout_width="77dp"
+                    android:id="@+id/mathImg"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/math"
+                    android:src="@drawable/math"
                     app:layout_constraintBottom_toTopOf="@+id/mathProgress"
                     app:layout_constraintEnd_toStartOf="@+id/mathProgress"
                     app:layout_constraintHorizontal_bias="0.5"

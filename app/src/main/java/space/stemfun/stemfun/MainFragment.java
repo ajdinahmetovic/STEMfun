@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.util.DisplayMetrics;
@@ -24,6 +25,13 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +48,9 @@ public class MainFragment extends Fragment {
     LinearLayout mainLayout;
 
     boolean isExpanded;
+
+
+
 
     User user;
     TinyDB localDb;
@@ -64,11 +75,28 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Drawable [] icons = {
+                getResources().getDrawable(R.drawable.science),
+                getResources().getDrawable(R.drawable.tech_icon),
+                getResources().getDrawable(R.drawable.engineering),
+                getResources().getDrawable(R.drawable.math)};
+
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         //isExpanded = false;
 
         localDb = new TinyDB(getContext());
         user = localDb.getObject("currentUser", User.class);
+
+        ImageView imgs [] = new ImageView[4];
+
+        imgs[0] = view.findViewById(R.id.scienceImg);
+        imgs[1] = view.findViewById(R.id.techImg);
+        imgs[2] = view.findViewById(R.id.engineeringImg);
+        imgs[3] = view.findViewById(R.id.mathImg);
+
+        for(int i = 0;i<4;i++){
+            imgs[i].setImageDrawable(icons[i]);
+        }
 
 
         dialogs[0] = view.findViewById(R.id.scineceProgress);
@@ -85,6 +113,7 @@ public class MainFragment extends Fragment {
 
         for(int i = 0;i<4;i++){
 
+            //dialogs[i].setProgress(100);
             dialogs[i].setProgress(list.get(i));
             progressText[i].setText(" ");
             progressText[i].setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -129,6 +158,29 @@ public class MainFragment extends Fragment {
             user.unlockUnderLevel(user.getLevel(), user.getUnderLevel());
             user.setQuesGame(user.getQuesGame()+1);
             localDb.putObject("currentUser", user);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child("stemfun-54bfc");
+                    FirebaseAuth mAuth = mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+                    databaseReference.child("users").child(firebaseUser.getUid()).setValue(localDb.getObject("currentUser", User.class)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                System.out.println("Changes saved");
+
+                            } else {
+                                System.out.println("Failed");
+                            }
+                        }
+                    });
+                }
+            }).start();
+
         }
         //ZA KONFETE
         DisplayMetrics metrics = new DisplayMetrics();
@@ -302,13 +354,17 @@ public class MainFragment extends Fragment {
                 distancer2.setLayoutParams(distancer2Params);
 
                 if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.ENGINEERING){
-                    distancer2.setImageResource(R.drawable.engineering);
+                    //distancer2.setImageResource(R.drawable.engineering);
+                    distancer2.setImageDrawable(icons[2]);
                 } else if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.MATH){
-                    distancer2.setImageResource(R.drawable.math);
+                    //distancer2.setImageResource(R.drawable.math);
+                    distancer2.setImageDrawable(icons[3]);
                 } else if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.TECHNOLOGY){
-                    distancer2.setImageResource(R.drawable.tech_icon);
+                    //distancer2.setImageResource(R.drawable.tech_icon);
+                    distancer2.setImageDrawable(icons[1]);
                 } else if(user.getLevels().get(i+1).getUnderLevels().get(j+1).getField() == Field.SCIENCE){
-                    distancer2.setImageResource(R.drawable.science);
+                    //distancer2.setImageResource(R.drawable.science);
+                    distancer2.setImageDrawable(icons[0]);
                 }
 
 

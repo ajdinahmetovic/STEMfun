@@ -39,11 +39,7 @@ public class AccountSelect extends AppCompatActivity {
         final Intent random = new Intent(this, MainActivity.class);
         final Intent aaa = new Intent(this, MainTest.class);
 
-
-
-
-
-
+        
         //startActivity(aaa);
 
         if(user != null){
