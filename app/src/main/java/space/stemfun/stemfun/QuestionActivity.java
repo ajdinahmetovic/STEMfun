@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static android.widget.ListPopupWindow.WRAP_CONTENT;
 
@@ -121,9 +123,27 @@ public class QuestionActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    int val = (int) (Math.random() * dataSnapshot.getChildrenCount() + 1) -1;
+                    Random rand = new Random(System.currentTimeMillis());
+
+                    int val = rand.nextInt((int) dataSnapshot.getChildrenCount()) + 1;
+                    System.out.println("count"+dataSnapshot.getChildrenCount());
+
+
+
                     user.getLevels().get(level).getUnderLevels().get(underlevel).setQuestionNum(val);
-                    question = dataSnapshot.child(String.valueOf(val)).getValue(Question.class);
+                    try{
+                        question = dataSnapshot.child(String.valueOf(val)).getValue(Question.class);
+                    } catch (Exception e){
+
+                        e.printStackTrace();
+                        ViewDialog noInternet = new ViewDialog();
+                        //noInternet.showDialog(getApplicationContext(), PopupType.NO_INTERNET);
+
+
+                        Toast.makeText(getApplicationContext(), "No internet connection", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
 
                     user.getLevels().get(user.getLevel()).getUnderLevels().get(user.getUnderLevel()).setQuestionData(question);
 
@@ -247,8 +267,6 @@ public class QuestionActivity extends AppCompatActivity {
                 }
             });
         } else {
-
-
             choice1.setClickable(false);
             choice1.setText(user.getLevels().get(level).getUnderLevels().get(underlevel).getQuestionData().getChoice1());
             choice2.setClickable(false);
@@ -281,6 +299,18 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
 
+    }
+
+    boolean isQuestionValid (int index){
+
+        for (int i = 0;i<=user.getLevel();i++){
+            for (int j = 1; j<=user.getUnderLevel();j++){
+                if(index == user.getLevels().get(i).getUnderLevels().get(j).getQuestionNum()){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
 }

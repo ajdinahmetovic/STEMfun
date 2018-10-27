@@ -23,9 +23,14 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.unity3d.player.UnityPlayer;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +40,7 @@ public class MyAccount extends Fragment {
     EditText name, username, confirmPassword, currentPassword;
     Button apply;
     TextView trophies, medals;
+    Button leaderboard;
 
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
@@ -43,7 +49,7 @@ public class MyAccount extends Fragment {
     User user;
     TinyDB localDb;
 
-    Button logOut;
+    Button settings;
 
     User newUser;
 
@@ -73,7 +79,8 @@ public class MyAccount extends Fragment {
         apply = view.findViewById(R.id.apply);
         trophies = view.findViewById(R.id.trophies);
         medals = view.findViewById(R.id.medals);
-        logOut = view.findViewById(R.id.logout);
+        settings = view.findViewById(R.id.settings);
+        leaderboard = view.findViewById(R.id.leaderboard);
 
         localDb = new TinyDB(getContext());
 
@@ -97,16 +104,47 @@ public class MyAccount extends Fragment {
 
 
 
-        logOut.setOnClickListener(new View.OnClickListener() {
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getContext(), AccountSelect.class);
                 startActivity(intent);
+                */
+                startActivity(new Intent(getContext(), SettingsActivity.class));
 
             }
         });
 
+        leaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("CLIIISK");
+                ViewDialog dialog = new ViewDialog();
+                dialog.showDialog(getActivity(), PopupType.LEADERBOARD);
+
+                Query top5 = databaseReference.child("stemfun-54bfc").child("users").orderByKey().limitToFirst(5);
+                top5.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot user : dataSnapshot.getChildren()) {
+
+                                System.out.println(user.getKey());
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        System.out.println("ERR");
+                    }
+                });
+
+            }
+        });
 
         apply.setOnClickListener(new View.OnClickListener() {
 

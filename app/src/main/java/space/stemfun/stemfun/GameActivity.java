@@ -149,13 +149,13 @@ public class GameActivity extends UnityPlayerActivity {
 
             ViewDialog dialog = new ViewDialog();
 
-//            if (user.getCurrentField().getFieldValue() == 2) {
+            if (user.getLevels().get(localDb.getInt("clickedLevel")).getUnderLevels().get(localDb.getInt("clickedUnderLevel")).getField().getFieldValue() == 2) {
                 dialog.showDialog(UnityPlayer.currentActivity, PopupType.GAME_FAILED_LANDSCAPE);
 
-  //          } else {
+            } else {
 
-    //            dialog.showDialog(UnityPlayer.currentActivity, PopupType.GAME_FAILED);
-      //      }
+                dialog.showDialog(UnityPlayer.currentActivity, PopupType.GAME_FAILED);
+           }
 
         }
     }

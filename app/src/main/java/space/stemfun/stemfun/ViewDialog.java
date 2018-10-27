@@ -279,6 +279,14 @@ public class ViewDialog {
             });
 
 
+        } else if (popupType == PopupType.LEADERBOARD){
+
+            dialog.setContentView(R.layout.popup_leaderboard);
+
+        } else if (popupType == PopupType.NO_INTERNET){
+            dialog.setContentView(R.layout.popup_no_internet);
+
+
         }
 
 
