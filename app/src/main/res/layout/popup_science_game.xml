@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="How to play"
+            android:text="How to play?"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
             android:textSize="26dp"/>
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:text="Hold and move finger on screen to move alien"
+            android:text="Move alien with finger."
             android:textAlignment="center"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
@@ -61,7 +61,7 @@
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Collect as many science related objects as you can"
+            android:text="COLLECT THESE!"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
             android:textSize="20dp"/>

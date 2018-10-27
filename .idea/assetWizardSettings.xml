@@ -14,11 +14,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="387" />
-                            <entry key="outputName" value="ic_crying" />
+                            <entry key="height" value="537" />
+                            <entry key="outputName" value="ic_right" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\ahmet\Desktop\crying.svg" />
-                            <entry key="width" value="587" />
+                            <entry key="sourceFile" value="C:\Users\pc\Downloads\right.svg" />
+                            <entry key="width" value="647" />
                           </map>
                         </option>
                       </PersistentState>

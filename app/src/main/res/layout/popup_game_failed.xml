@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bold"
-            android:text="You failed game"
+            android:text="You failed game."
             android:textAlignment="center"
             android:textColor="#010b19"
             android:textSize="18sp" />
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bold"
-            android:text="Try again, dont give up!"
+            android:text="Try again, don't give up!"
             android:textAlignment="center"
             android:textColor="#010b19"
             android:textSize="16sp"/>
@@ -69,7 +69,7 @@
                 android:background="@drawable/shape_button_popup"
                 android:fontFamily="@font/bold"
                 android:padding="10dp"
-                android:text="How to play"
+                android:text="How to play?"
                 android:textColor="#010b19"
                 android:textSize="30sp" />
 

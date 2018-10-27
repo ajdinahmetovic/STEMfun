@@ -24,10 +24,10 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="How to play"
+            android:text="How to play?"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
-            android:textSize="26dp"/>
+            android:textSize="28dp"/>
 
         <ImageView
             android:layout_gravity="center"
@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:text="Tap for robot to jump"
+            android:text="Tap on screen to jump."
             android:textAlignment="center"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
@@ -65,22 +65,12 @@
                     android:src="@drawable/ic_lives"
                     />
 
-
-            <TextView
-                android:layout_marginLeft="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3"
-                android:fontFamily="@font/bold"
-                android:textColor="#010b19"
-                android:textSize="70dp"/>
-
         </LinearLayout>
 
         <TextView
             android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:text="You have 3 lives, you hit obstacle, you lose life"
+            android:text="DON'T HIT OBSTACLES!"
             android:textAlignment="center"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"

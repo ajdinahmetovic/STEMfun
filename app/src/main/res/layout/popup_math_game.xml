@@ -23,10 +23,10 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="How to play"
+            android:text="How to play?"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
-            android:textSize="26dp"/>
+            android:textSize="28dp"/>
 
         <ImageView
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:text="Tilt yout phone left and right to move alien"
+            android:text="Tilt yout phone left and right."
             android:textAlignment="center"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
@@ -60,9 +60,10 @@
             android:layout_width="260dp"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:text="Collect numbers to get points"
+            android:text="COLLECT NUMBERS"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
+            android:textAlignment="center"
             android:textSize="20dp"/>
 
 
@@ -77,7 +78,7 @@
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Avoid letters to avoid losing points"
+            android:text="AVOID LETTERS"
             android:fontFamily="@font/bold"
             android:textColor="#010b19"
             android:textSize="20dp"/>
