@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/clasroomFrame"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Classroom">
+    tools:context=".ClassroomPanel">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@drawable/main_final">
 
         <LinearLayout
@@ -71,13 +70,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/clasroomContainer"
@@ -86,10 +79,12 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/add"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/ic_add" />
             </LinearLayout>
         </ScrollView>
-
-
-    </android.support.constraint.ConstraintLayout>
-
+    </LinearLayout>
 </FrameLayout>

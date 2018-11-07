@@ -234,7 +234,7 @@ public class MainFragment extends Fragment {
 
             //card.setBackgroundColor(Color.parseColor(colors[random]));
             //card.setRadius((int) (50*scale+0.5f));
-
+/*
             if(random==0){
                 //card.setBackgroundResource(R.drawable.shape_cardview_blue);
                 card.setBackgroundResource(R.drawable.shape_blue);
@@ -243,7 +243,7 @@ public class MainFragment extends Fragment {
             } else if(random==2) {
                 card.setBackgroundResource(R.drawable.shape_cardview_pink);
             }
-
+*/
             LinearLayout textLayout = new LinearLayout(getContext());
             textLayout.setOrientation(LinearLayout.HORIZONTAL);
             textLayout.setGravity(Gravity.CENTER);
@@ -288,10 +288,14 @@ public class MainFragment extends Fragment {
 
             if(user.getLevels().get(i+1).getLevelState()==State.UNLOCKED){
 
+                card.setBackgroundResource(R.drawable.shape_cardview_pink);
+
                 //img.setImageResource(R.drawable.unlocked_icon);
             } else {
                 img.setImageResource(R.drawable.locked_icon);
                 textLayout.addView(img);
+                card.setBackgroundResource(R.drawable.shape_blue);
+
                 //textLayout.addView(levelText);
                 card.addView(textLayout);
             }

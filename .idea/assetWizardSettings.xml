@@ -14,11 +14,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="537" />
-                            <entry key="outputName" value="ic_right" />
+                            <entry key="height" value="111" />
+                            <entry key="outputName" value="ic_add" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\pc\Downloads\right.svg" />
-                            <entry key="width" value="647" />
+                            <entry key="sourceFile" value="C:\Users\ahmet\Downloads\add.svg" />
+                            <entry key="width" value="111" />
                           </map>
                         </option>
                       </PersistentState>

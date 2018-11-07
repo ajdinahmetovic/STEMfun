@@ -21,4 +21,11 @@
 
     </style>
 
+    <style name="search" parent="AppTheme">
+        <!--This line changes the color of text in Toolbar-->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
+        <item name="android:textColorSecondary">#FFFFFF</item>
+    </style>
+
 </resources>

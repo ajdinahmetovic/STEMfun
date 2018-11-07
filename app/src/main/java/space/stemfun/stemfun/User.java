@@ -12,6 +12,11 @@ public class User extends UserProgress {
     private String password;
     private UserType accountType;
     private String email;
+    private boolean hasClassroom;
+
+    private String classRoom;
+    private boolean requestAcepted;
+    private String invitedClass;
 
     private ArrayList<Level> levels = new ArrayList<>();
 
@@ -57,8 +62,9 @@ public class User extends UserProgress {
     private UserAge userAge;
 
     public User (){
+        invitedClass = "!";
+        hasClassroom = false;
         setUserAge(UserAge.junior);
-
         for(int i = 0;i<21;i++){
             levels.add(new Level());
         }
@@ -114,7 +120,11 @@ public class User extends UserProgress {
     }
 
 
+    public boolean isHasClassroom() {
+        return hasClassroom;
+    }
 
-
-
+    public void setHasClassroom(boolean hasClassroom) {
+        this.hasClassroom = hasClassroom;
+    }
 }

@@ -124,24 +124,7 @@ public class MyAccount extends Fragment {
                 ViewDialog dialog = new ViewDialog();
                 dialog.showDialog(getActivity(), PopupType.LEADERBOARD);
 
-                Query top5 = databaseReference.child("stemfun-54bfc").child("users").orderByKey().limitToFirst(5);
-                top5.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot user : dataSnapshot.getChildren()) {
 
-                                System.out.println(user.getKey());
-
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        System.out.println("ERR");
-                    }
-                });
 
             }
         });

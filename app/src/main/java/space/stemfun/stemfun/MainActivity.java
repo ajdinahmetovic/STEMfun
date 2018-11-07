@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+    User user;
+    TinyDB localDb;
     BottomNavigationView navigation;
     int k=0;
 
@@ -49,11 +51,18 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                 case R.id.classroom:
+                    if(user.getAccountType() == UserType.STUDENT) {
+                        transaction.replace(R.id.mainLayout, new Classroom());
+                    } else if (user.getAccountType() == UserType.TEACHER) {
+                        if(user.isHasClassroom()){
+                            transaction.replace(R.id.mainLayout, new ClassroomPanel());
+                        }else {
+                            transaction.replace(R.id.mainLayout, new ClassroomTeacher());
+                        }
 
-                    transaction.replace(R.id.mainLayout, new Classroom());
+                    }
                     transaction.commit();
                     return true;
-
             }
             return false;
         }
@@ -64,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        localDb = new TinyDB(this);
+        user = localDb.getObject("currentUser",User.class);
+
 
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY

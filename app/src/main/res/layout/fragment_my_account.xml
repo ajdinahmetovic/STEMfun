@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_final"
     tools:context=".MyAccount">
 
     <ScrollView
@@ -15,12 +16,12 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/main_final">
+            >
 
             <Button
                 android:id="@+id/leaderboard"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
                 android:background="@drawable/ic_ranking"
                 app:layout_constraintBottom_toTopOf="@+id/name"
                 app:layout_constraintEnd_toStartOf="@+id/userPhoto"
